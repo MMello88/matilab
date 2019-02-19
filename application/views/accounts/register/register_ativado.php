@@ -8,8 +8,8 @@
         <h2>Mister Web!</h2>
         <hr class='mb-3 mt-1'>
 		<p class="lead"><?= $usuario->nome; ?> Seja Bem Vindo!</p>
-		<p class="lead">Faça já seu loginho e começe a facilitar sua vida financeira!</p>
-		<a class="btn btn-warning btn-lg" href="<?= base_url("Portal/login"); ?>" role="button">Loginho</a>
+		<p class="lead">Faça já sua conta e começe a facilitar sua vida financeira!</p>
+		<a class="btn btn-warning btn-lg" href="<?= base_url("accounts"); ?>" role="button">Sua conta</a>
       </div>
       <!-- fim do Titulo -->
     </div>

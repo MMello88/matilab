@@ -53,9 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login'   ] = 'Login/login';
-$route['forgot'  ] = 'Login/forgot';
-$route['logout'  ] = 'Login/logout';
-$route['register'] = 'Login/register';
-$route['register_on'] = 'Login/register_ativado';
-$route['register_success'] = 'Login/register_success';
+$route['accounts'] = 'Accounts/accounts';
+$route['forgot'  ] = 'Accounts/forgot';
+$route['logout'  ] = 'Accounts/logout';
+$route['register'] = 'Accounts/register';
+$route['register_on'] = 'Accounts/register_ativado';
+$route['register_success'] = 'Accounts/register_success';

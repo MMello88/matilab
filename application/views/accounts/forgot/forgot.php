@@ -1,5 +1,5 @@
 <div class="container-fluid" style="position:absolute; height: 100%; background-image:url('<?= base_url('assets/images/img_parallax.jpg') ?>');  background-position: center; background-repeat: no-repeat; background-size: cover; z-index: -1;"></div>
-<section id="login">
+<section id="accounts">
     <div class="container col-lg-7" style="padding-top:300px;">
         <div class="card border-0 bg-transparent" >
             <div class="card-header border-0 bg-transparent">

@@ -1,10 +1,10 @@
 <div class="container-fluid" style="position:absolute; height: 100%; background-image:url('<?= base_url('assets/images/pexels-photo-30732.jpg') ?>');  background-position: center; background-repeat: no-repeat; background-size: cover; z-index: -1;"></div>
 
-<section id="login">
+<section id="accounts">
 	<div class="container col-lg-7" style="padding-top:100px;">
 		<div class="card">
 		    <div class="card-header">
-			   Loginho
+			   Sua conta
 		    </div>
 		    
 		    <div class="card-body">
@@ -27,18 +27,18 @@
 					<?php endif; ?>
 
 					<h3 class="pb-2">Entrar no MatiLab</h3>
-					<?= form_open("login", array("class" => "form")) ?>
+					<?= form_open("accounts", array("class" => "form", "id" => "formAccounts")) ?>
 						<div class="form-group">
-							<!--<label for="exampleInputEmail1">Email address</label>-->
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+							<!--<label for="inputEmail">Email address</label>-->
+							<input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" autocomplete="current-password" placeholder="Enter email">
 						</div>
 						
 						<div class="form-group">
-							<!--<label for="exampleInputPassword1">Password</label>-->
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+							<!--<label for="inputPassword">Password</label>-->
+							<input type="password" class="form-control" id="inputPassword" name="senha" autocomplete="current-password" placeholder="Password">
 						</div>
 
-						<input type="submit" class="btn btn-primary rounded-pill" value="Login">
+						<input type="submit" id="enterAccount" class="btn btn-primary rounded-pill" value="Entrar">
 						<div class="form-group form-check pt-3 pb-0">
 							<input type="checkbox" class="form-check-input" id="exampleCheck1">
 							<label class="form-check-label" for="exampleCheck1">Lembre me - </label>
