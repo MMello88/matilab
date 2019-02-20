@@ -14,7 +14,21 @@ class Accounts extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
-
+	
+	public function validate_accounts(){
+		if($_POST){
+			if($_POST['email'] == 'matheusnarciso@hotmail.com'){
+				if($_POST['senha'] == '123'){
+				echo json_encode(["code" => "1", "message" => "sucesso", "senha"=>$_POST['senha'], "users" => $_POST['email']]);
+				} else {
+					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado.");
+				}
+			} else {
+				echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado.");
+			}
+		}
+	}
+	
 	public function accounts()
 	{
 		$this->load->view('accounts/includes/header');

@@ -8,24 +8,14 @@
 		    </div>
 		    
 		    <div class="card-body">
+				<div class="alert alert-dismissible fade" id="message">
+				  <strong>Ops!</strong> <p></p>
+				  <button type="button" class="close" id="close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				
 				<div class="container col-lg-5 offset-lg-1">
-					<?php if (validation_errors()) : ?>
-						<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						  <strong>Ops!</strong> <?= validation_errors() ?>
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
-						</div>
-					<?php endif; ?>
-					<?php if (isset($error)) : ?>
-						<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						  <strong>Ops!</strong> <?= $error ?>
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
-						</div>
-					<?php endif; ?>
-
 					<h3 class="pb-2">Entrar no MatiLab</h3>
 					<?= form_open("accounts", array("class" => "form", "id" => "formAccounts")) ?>
 						<div class="form-group">
