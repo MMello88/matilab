@@ -8,8 +8,8 @@
 		    </div>
 		    
 		    <div class="card-body">
-				<div class="alert alert-dismissible fade" id="message">
-				  <strong>Ops!</strong> <p></p>
+				<div class="alert alert-dismissible fade" id="code">
+				  <strong>Ops!</strong><hr><p id="message"></p>
 				  <button type="button" class="close" id="close">
 					<span aria-hidden="true">&times;</span>
 				  </button>

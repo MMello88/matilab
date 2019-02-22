@@ -53,14 +53,14 @@ class Acconts {
 		}.bind(this));
 		
 		document.getElementById('close').addEventListener('click', function(e) {
-			document.getElementById('message').classList.add('hidden');
-			document.getElementById('message').classList.remove('show');
+			document.getElementById('code').classList.add('hidden');
+			document.getElementById('code').classList.remove('show');
 			e.preventDefault();
 		}.bind(this));
 	}
 	
 	validateSessionAccount(){
-		return $.ajax({
+		$.ajax({
 			url: base_url + "Accounts/validate_session_account",
 			success: function(data){
 				this.respJson = new ResponseJson(data);
@@ -68,7 +68,6 @@ class Acconts {
 					window.location = base_url + "Welcome";
 			},
 			error: function(data) {
-				alert(data.responseText);
 			}
 		});
 	}
@@ -88,12 +87,14 @@ class Acconts {
 			data: {"email":this.email, "senha":this.pass},
 			success: function(data){
 				this.respJson = new ResponseJson(data);
-				alert(this.respJson.message);
-				//document.getElementById('message').classList.add(this.respJson.alert);
-				//document.getElementById('message').classList.add('show');
+				if (this.respJson.code !== '1'){
+					document.getElementById('code').classList.add(this.respJson.alert);
+					document.getElementById('code').classList.add('show');
+					document.getElementById("message").appendChild(document.createTextNode(this.respJson.message));
+				}
 			},
 			error: function(data) {
-				alert(data.responseText);
+				console.log(data.responseText);
 			}
 		});
 		
@@ -111,6 +112,6 @@ class Acconts {
 
 let acc = new Acconts();
 
-acc.validateAccount('matheusnarciso@hotmail.com','1231');
+acc.validateAccount('s','');
 
 acc.validateSessionAccount();
