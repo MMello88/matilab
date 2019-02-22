@@ -15,16 +15,24 @@ class Accounts extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 	
+	public function validate_session_account(){
+		if ($this->session->userdata("account"))
+			echo json_encode(["code" => "1", "message" => "true"]);
+		else
+			echo json_encode(["code" => "3", "message" => "false"]);
+	}
+	
 	public function validate_accounts(){
 		if($_POST){
 			if($_POST['email'] == 'matheusnarciso@hotmail.com'){
 				if($_POST['senha'] == '123'){
-				echo json_encode(["code" => "1", "message" => "sucesso", "senha"=>$_POST['senha'], "users" => $_POST['email']]);
+					echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
+					$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email']]);
 				} else {
-					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado.");
+					echo json_encode(["code" => "2", "message" => "Senha inválida"]);
 				}
 			} else {
-				echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado.");
+				echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
 			}
 		}
 	}

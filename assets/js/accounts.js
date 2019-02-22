@@ -44,9 +44,7 @@ class ResponseJson {
 }
 
 class Acconts {
-	constructor(user, password){
-		this.user = user;
-		this.pass = password;
+	constructor(){
 		this.respJson = null;
 		
 		document.getElementById('formAccounts').addEventListener('submit', function(e) {
@@ -62,22 +60,37 @@ class Acconts {
 	}
 	
 	validateSessionAccount(){
-		return false;
+		return $.ajax({
+			url: base_url + "Accounts/validate_session_account",
+			success: function(data){
+				this.respJson = new ResponseJson(data);
+				if (this.respJson.code == '1' && this.respJson.message == 'true')
+					window.location = base_url + "Welcome";
+			},
+			error: function(data) {
+				alert(data.responseText);
+			}
+		});
 	}
 	
 	redirectAccount(){
-		window.location = base_url + "Welcome";
+		if (this.respJson.code == '1' && this.respJson.message == 'true')
+			window.location = base_url + "Welcome";
 	}
 	
-	validateAccount(){
+	validateAccount(email, password){
+		this.email = email;
+		this.pass = password;
+		
 		$.ajax({
 			type: "POST",
 			url: base_url + "Accounts/validate_accounts",
-			data: {"email":this.user, "senha":this.pass},
+			data: {"email":this.email, "senha":this.pass},
 			success: function(data){
 				this.respJson = new ResponseJson(data);
-				document.getElementById('message').classList.add(this.respJson.alert);
-				document.getElementById('message').classList.add('show');
+				alert(this.respJson.message);
+				//document.getElementById('message').classList.add(this.respJson.alert);
+				//document.getElementById('message').classList.add('show');
 			},
 			error: function(data) {
 				alert(data.responseText);
@@ -96,7 +109,8 @@ class Acconts {
 	}	
 }
 
-let acc = new Acconts('test','pwd');
+let acc = new Acconts();
 
-if(acc.validateSessionAccount() == true)
-	acc.redirectAccount();
+acc.validateAccount('matheusnarciso@hotmail.com','1231');
+
+acc.validateSessionAccount();
