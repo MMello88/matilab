@@ -7,10 +7,10 @@ class Sendemail {
 
     public function __construct()
     {
-        $this->CI =& get_instance();
+        $this->CI = &get_instance();
     }
 
-	public function enviarEmailRecuperarSenha($nome, $email, $hash){
+	public function enviarEmailRecuperarSenha($nome, $to_email, $hash){
     	$link = base_url("forgot/$hash");
     	$html = 
 		"<!DOCTYPE html>
@@ -30,14 +30,12 @@ class Sendemail {
 		  </body>
 		</html>";
 
-		if (ENVIRONMENT === 'development'){
-		    $this->CI->load->library('email');
-		    $this->email
-		    	->from('matheus.gnu@gmail.com', 'MatiLab')
-		    	->to($email)
-		    	->subject("MatiLab - Pedido de Recuperação de Senha.")
-		    	->message($html)
-		    	->send();
-		}
+	    $this->CI->load->library('email');
+	    $this->CI->email
+	    	->from('communications@matilab.com.br', 'MatiLab')
+	    	->to($to_email)
+	    	->subject("MatiLab - Pedido de Recuperação de Senha.")
+	    	->message($html)
+	    	->send();
     }
 }
