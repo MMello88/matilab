@@ -75,7 +75,7 @@ class Accounts extends CI_Controller {
 				$_usuario = $this->accounts->getByEmail($this->input->post('email'));
 				if(!empty($_usuario)){
 					$hash = md5(date('Y-m-d H:i:s'));
-					$this->accounts->changeHash($_usuario->id_usuario, $hash);
+					$this->accounts->changeHash($_usuario->id_usuario, $hash, date('Y-m-d') . ' + 3 days');
 					$this->sendemail->enviarEmailRecuperarSenha($_usuario->nome, $_usuario->email, $hash);
 					echo json_encode(["code" => "1", "message" => "Link de Recuperar a Senha foi enviado em seu E-mail."]);
 				} else {

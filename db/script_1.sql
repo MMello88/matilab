@@ -3,9 +3,10 @@ CREATE TABLE `tbl_usuario`(
   `nome` VARCHAR(150) NOT NULL,
   `email` VARCHAR(250) NOT NULL,
   `senha` VARCHAR(64) NOT NULL,
-  `hash` VARCHAR(255) NULL,
   `ativo` CHAR(1) NOT NULL,
   `dt_cadastro` DATETIME NOT NULL,
+  `hash` VARCHAR(255) NULL,
+  `dt_hash_exp` DATETIME NULL,
   PRIMARY KEY (`id_usuario`),
   CONSTRAINT Uk_Email UNIQUE (email)
 );

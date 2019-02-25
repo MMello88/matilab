@@ -36,8 +36,8 @@ class Accounts_model extends CI_Model {
         return empty($result) ? "" : $result[0];
     }
 
-    public function changeHash($id_usuario, $hash){
-        return $this->db->update('usuario', ['hash' => $hash], ['id_usuario' => $id_usuario]);
+    public function changeHash($id_usuario, $hash, $date){
+        return $this->db->update('usuario', ['hash' => $hash, 'dt_hash_exp' => $date], ['id_usuario' => $id_usuario]);
     }
 
     public function changeSenha($id_usuario, $senha){
