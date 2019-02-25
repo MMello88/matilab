@@ -8,12 +8,12 @@
 		    </div>
 		    
 		    <div class="card-body">
-				<div class="alert alert-dismissible fade" id="code">
-				  <strong>Ops!</strong><hr><p id="message"></p>
-				  <button type="button" class="close" id="close">
-					<span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
+		        <div class="alert alert-dismissible collapse" id="code">
+		          <strong>Ops!</strong><hr><p id="message"></p>
+		          <button type="button" class="close" id="close" data-toggle="collapse" data-target="#code" aria-expanded="true" aria-controls="code">
+		          <span aria-hidden="true">&times;</span>
+		          </button>
+		        </div>
 				
 				<div class="container col-lg-5 offset-lg-1">
 					<h3 class="pb-2">Entrar no MatiLab</h3>

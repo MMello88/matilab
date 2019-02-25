@@ -1,4 +1,5 @@
 "use strict";
+
 class ResponseJson {
 	constructor(dataResponse){
 		var data = JSON.parse(dataResponse);
@@ -47,16 +48,27 @@ class Acconts {
 	constructor(){
 		this.respJson = null;
 		
-		document.getElementById('formAccounts').addEventListener('submit', function(e) {
-			this.validateAccount();
-			e.preventDefault();
-		}.bind(this));
+		if (document.getElementById('formAccounts')){
+			document.getElementById('formAccounts').addEventListener('submit', function(e) {
+				this.validateAccount(e.target);
+				e.preventDefault();
+			}.bind(this));
+		}
 		
-		document.getElementById('close').addEventListener('click', function(e) {
-			document.getElementById('code').classList.add('hidden');
-			document.getElementById('code').classList.remove('show');
-			e.preventDefault();
-		}.bind(this));
+		if (document.getElementById('formRegisterAccount')){
+			document.getElementById('formRegisterAccount').addEventListener('submit', function(e) {
+				this.registerAccount(e.target);
+				e.preventDefault();
+			}.bind(this));
+		}
+
+		if (document.getElementById('formForgot')){
+			document.getElementById('formForgot').addEventListener('submit', function(e) {
+				this.validateForgot(e.target);
+				e.preventDefault();
+			}.bind(this));
+		}
+
 	}
 	
 	validateSessionAccount(){
@@ -76,42 +88,77 @@ class Acconts {
 		if (this.respJson.code == '1' && this.respJson.message == 'true')
 			window.location = base_url + "Welcome";
 	}
-	
-	validateAccount(email, password){
-		this.email = email;
-		this.pass = password;
-		
+
+	validateForgot(form){
+		var me = this;
 		$.ajax({
 			type: "POST",
-			url: base_url + "Accounts/validate_accounts",
-			data: {"email":this.email, "senha":this.pass},
+			url: base_url + "Accounts/validate_forgot",
+			data: $(form).serialize(),
 			success: function(data){
 				this.respJson = new ResponseJson(data);
-				if (this.respJson.code !== '1'){
-					document.getElementById('code').classList.add(this.respJson.alert);
-					document.getElementById('code').classList.add('show');
-					document.getElementById("message").appendChild(document.createTextNode(this.respJson.message));
-				}
+				document.getElementById('code').classList.add(this.respJson.alert);
+				document.getElementById('code').classList.add('show');
+				document.getElementById("message").innerHTML = this.respJson.message;
 			},
 			error: function(data) {
-				console.log(data.responseText);
 			}
 		});
 		
 		return false;
 	}
 	
-	get respJson(){
-		return this._respJson;
+	validateAccount(form){
+		var me = this;
+		$.ajax({
+			type: "POST",
+			url: base_url + "Accounts/validate_accounts",
+			data: $(form).serialize(),
+			success: function(data){
+				this.respJson = new ResponseJson(data);
+				if (this.respJson.code !== '1'){
+					document.getElementById('code').classList.add(this.respJson.alert);
+					document.getElementById('code').classList.add('show');
+					document.getElementById("message").innerHTML = this.respJson.message;
+				} else {
+					me.validateSessionAccount();
+				}
+			},
+			error: function(data) {
+			}
+		});
+		
+		return false;
 	}
 	
-	set respJson(value){
-		this._respJson = value;
-	}	
+	registerAccount(form){
+		var me = this;
+		$.ajax({
+			type: "POST",
+			url: base_url + "Accounts/register_account",
+			data: $(form).serialize(),
+			success: function(data){
+				this.respJson = new ResponseJson(data);
+				document.getElementById('code').classList.add(this.respJson.alert);
+				document.getElementById('code').classList.add('show');
+				document.getElementById("message").innerHTML = this.respJson.message;
+				if (this.respJson.code == '1')
+					me.validateSessionAccount();
+			},
+			error: function(data) {
+			}
+		});
+		
+		return false;
+	}
+
 }
 
 let acc = new Acconts();
 
-acc.validateAccount('s','');
+//acc.registerAccount('MATHEUS','matheus@matheus.com', '12345678', '12345678');
+/*acc.registerAccount('matheus','matheus', '123', '123');
+acc.registerAccount('matheus','matheus@matheus.com', '123', '123');
+acc.registerAccount('matheus','matheus@matheus.com', '123', '123');*/
 
-acc.validateSessionAccount();
+//acc.validateAccount('s','');

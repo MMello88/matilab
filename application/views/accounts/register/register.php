@@ -7,12 +7,13 @@
       </div>
 
       <div class="card-body border-0">
-        <div class="alert alert-dismissible fade" id="code">
+        <div class="alert alert-dismissible collapse" id="code">
           <strong>Ops!</strong><hr><p id="message"></p>
-          <button type="button" class="close" id="close">
+          <button type="button" class="close" id="close" data-toggle="collapse" data-target="#code" aria-expanded="true" aria-controls="code">
           <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
 
         <?= form_open("register", array("class" => "form", "id" => "formRegisterAccount")) ?>
           <div class="form-group">

@@ -25,16 +25,20 @@ class Accounts extends CI_Controller {
 		$this->session->unset_userdata("account");
 
 		$this->form_validation->set_rules('email', 'Usuário', 'trim|required|valid_email');
-		$this->form_validation->set_rules('senha', 'Password', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('senha', 'Password', 'trim|required|min_length[6]');
 		
-		if ($this->form_validation->run() == true) {
-			//buscar
-			if($this->input->post('email') == 'matheusnarciso@hotmail.com'){
-				if($this->input->post('senha') == '123'){
-					$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email']]);
-					echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
+		if ($this->form_validation->run() == TRUE) {
+			$_usuario = $this->accounts->getByEmail($this->input->post('email'));
+			if (!empty($_usuario)){
+				if($this->input->post('email') == $_usuario->email){
+					if(md5($this->input->post('senha')) == $_usuario->senha){
+						$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email']]);
+						echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
+					} else {
+						echo json_encode(["code" => "2", "message" => "Senha inválida"]);
+					}
 				} else {
-					echo json_encode(["code" => "2", "message" => "Senha inválida"]);
+					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
 				}
 			} else {
 				echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
@@ -45,17 +49,57 @@ class Accounts extends CI_Controller {
 	}
 
 	public function register_account(){
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_usuario.email]');
-		$this->form_validation->set_rules('senha', 'Senha', 'trim|required|min_length[8]');
-		$this->form_validation->set_rules('resenha', 'Confirmar Senha', 'required|min_length[8]|matches[senha]');
 		$this->form_validation->set_rules('nome', 'Nome', 'trim|required');
-
-		if ($this->form_validation->run() === FALSE){
-			//registrar
-			$this->session->set_userdata("account",["Logado" => FALSE, "Email" => $this->input->post('email')]);
-			echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_usuario.email]');
+		$this->form_validation->set_rules('senha', 'Senha', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('resenha', 'Confirmar Senha', 'required|min_length[6]|matches[senha]');
+		
+		if ($this->form_validation->run() === TRUE){
+			$return_id = $this->accounts->inserirUsuario();
+			if(is_integer($return_id)){
+				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email')]);
+				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
+			} else {
+				echo $return_id;
+			}
 		} else {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}
+	}
+
+	public function validate_forgot(){
+		if (!$this->input->post('hash')) {
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+			if ($this->form_validation->run() === TRUE) {
+				$_usuario = $this->accounts->getByEmail($this->input->post('email'));
+				if(!empty($_usuario)){
+					$hash = md5(date('Y-m-d H:i:s'));
+					$this->accounts->changeHash($_usuario->id_usuario, $hash);
+					$this->sendemail->enviarEmailRecuperarSenha($_usuario->nome, $_usuario->email, $hash);
+					echo json_encode(["code" => "1", "message" => "Link de Recuperar a Senha foi enviado em seu E-mail."]);
+				} else {
+					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
+				}
+			} else {
+				echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+			}
+		} else {
+			$this->form_validation->set_rules('hash', '', 'required');
+			$this->form_validation->set_rules('senha', 'Senha', 'trim|required|min_length[6]');			
+
+			if ($this->form_validation->run() === TRUE) {
+				$_usuario = $this->accounts->getByHash($this->input->post('hash'));
+				if(!empty($_usuario)){
+					$this->accounts->changeHash($_usuario->id_usuario, "");
+					$this->accounts->changeSenha($_usuario->id_usuario, md5($this->input->post('senha')));
+					echo json_encode(["code" => "1", "message" => "Sua senha foi recuperada com sucesso!"]);
+				} else {
+					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
+				}
+			} else {
+				echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+			}
 		}
 	}
 
@@ -77,10 +121,11 @@ class Accounts extends CI_Controller {
 		$this->load->view('accounts/includes/footer', $this->data);
 	}
 
-	public function forgot()
+	public function forgot($hash = '')
 	{
+		$this->data['hash'] = $hash;
 		$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/forgot/forgot');
+		$this->load->view('accounts/forgot/forgot', $this->data);
 		$this->load->view('accounts/includes/footer', $this->data);
 	}
 
