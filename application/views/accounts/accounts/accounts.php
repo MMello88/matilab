@@ -51,7 +51,7 @@
 		    </div>
 			<div class="card-footer text-muted">
 				<div class="container col-lg-5 offset-lg-1">
-					<p>Novo no MatiLab? <a href="<?= base_url('register') ?>" class="link">Inscreva-se agora</a></p>
+					<p>Novo no MatiLab? <a href="<?= base_url('accounts/register') ?>" class="link">Inscreva-se agora</a></p>
 				</div>
 			</div>
 		</div>

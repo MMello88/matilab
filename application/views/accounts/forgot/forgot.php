@@ -6,8 +6,8 @@
                Recuperar Senha
             </div>
             <div class="card-body border-0">
-                <div class="alert alert-dismissible collapse" id="code">
-                  <strong>Ops!</strong><hr><p id="message"></p>
+                <div class="alert alert-dismissible collapse <?= !isset($hash_msg) ? "" : "alert-info show" ?>" id="code">
+                  <strong>Ops!</strong><hr><p id="message"><?= !isset($hash_msg) ? "" : $hash_msg ?></p>
                   <button type="button" class="close" id="close" data-toggle="collapse" data-target="#code" aria-expanded="true" aria-controls="code">
                   <span aria-hidden="true">&times;</span>
                   </button>

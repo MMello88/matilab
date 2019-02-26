@@ -54,9 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['accounts'] = 'Accounts/accounts';
+$route['accounts/continue'] = 'Accounts/continuar';
+$route['accounts/register'] = 'Accounts/register';
 $route['forgot'  ] = 'Accounts/forgot';
 $route['forgot/(:any)'  ] = 'Accounts/forgot/$1';
 $route['logout'  ] = 'Accounts/logout';
-$route['register'] = 'Accounts/register';
 $route['register_on'] = 'Accounts/register_ativado';
 $route['register_success'] = 'Accounts/register_success';

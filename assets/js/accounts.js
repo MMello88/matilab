@@ -50,21 +50,28 @@ class Acconts {
 		
 		if (document.getElementById('formAccounts')){
 			document.getElementById('formAccounts').addEventListener('submit', function(e) {
-				this.validateAccount(e.target);
+				this.validate(e.target, "validate_accounts");
 				e.preventDefault();
 			}.bind(this));
 		}
 		
 		if (document.getElementById('formRegisterAccount')){
 			document.getElementById('formRegisterAccount').addEventListener('submit', function(e) {
-				this.registerAccount(e.target);
+				this.validate(e.target, "register_account");
 				e.preventDefault();
 			}.bind(this));
 		}
 
 		if (document.getElementById('formForgot')){
 			document.getElementById('formForgot').addEventListener('submit', function(e) {
-				this.validateForgot(e.target);
+				this.validate(e.target, "validate_forgot");
+				e.preventDefault();
+			}.bind(this));
+		}
+		
+		if (document.getElementById('formAccountContinue')){
+			document.getElementById('formAccountContinue').addEventListener('submit', function(e) {
+				this.validate(e.target, "validate_continue");
 				e.preventDefault();
 			}.bind(this));
 		}
@@ -89,69 +96,28 @@ class Acconts {
 			window.location = base_url + "Welcome";
 	}
 
-	validateForgot(form){
+	validate(form, funct){
 		var me = this;
 		$.ajax({
 			type: "POST",
-			url: base_url + "Accounts/validate_forgot",
+			url: base_url + "Accounts/" + funct,
 			data: $(form).serialize(),
 			success: function(data){
+				console.log(data.responseText);
+				console.log(data);
 				this.respJson = new ResponseJson(data);
 				document.getElementById('code').classList.add(this.respJson.alert);
 				document.getElementById('code').classList.add('show');
 				document.getElementById("message").innerHTML = this.respJson.message;
 			},
 			error: function(data) {
+				console.log(data);
+				console.log(data.responseText)
 			}
 		});
 		
 		return false;
 	}
-	
-	validateAccount(form){
-		var me = this;
-		$.ajax({
-			type: "POST",
-			url: base_url + "Accounts/validate_accounts",
-			data: $(form).serialize(),
-			success: function(data){
-				this.respJson = new ResponseJson(data);
-				if (this.respJson.code !== '1'){
-					document.getElementById('code').classList.add(this.respJson.alert);
-					document.getElementById('code').classList.add('show');
-					document.getElementById("message").innerHTML = this.respJson.message;
-				} else {
-					me.validateSessionAccount();
-				}
-			},
-			error: function(data) {
-			}
-		});
-		
-		return false;
-	}
-	
-	registerAccount(form){
-		var me = this;
-		$.ajax({
-			type: "POST",
-			url: base_url + "Accounts/register_account",
-			data: $(form).serialize(),
-			success: function(data){
-				this.respJson = new ResponseJson(data);
-				document.getElementById('code').classList.add(this.respJson.alert);
-				document.getElementById('code').classList.add('show');
-				document.getElementById("message").innerHTML = this.respJson.message;
-				if (this.respJson.code == '1')
-					me.validateSessionAccount();
-			},
-			error: function(data) {
-			}
-		});
-		
-		return false;
-	}
-
 }
 
 let acc = new Acconts();

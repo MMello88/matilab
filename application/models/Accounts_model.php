@@ -15,6 +15,7 @@ class Accounts_model extends CI_Model {
     		'senha' => md5($this->input->post('senha')),
     		'Ativo' => '1',
     		'dt_cadastro' => date('Y-m-d H:i:s'),
+            'cadastro_completo' => '0',
     	];
 
     	if ($this->db->insert('usuario', $data)) {
@@ -36,7 +37,7 @@ class Accounts_model extends CI_Model {
         return empty($result) ? "" : $result[0];
     }
 
-    public function changeHash($id_usuario, $hash, $date){
+    public function changeHash($id_usuario, $hash = "", $date = ""){
         return $this->db->update('usuario', ['hash' => $hash, 'dt_hash_exp' => $date], ['id_usuario' => $id_usuario]);
     }
 

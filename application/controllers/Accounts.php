@@ -32,7 +32,8 @@ class Accounts extends CI_Controller {
 			if (!empty($_usuario)){
 				if($this->input->post('email') == $_usuario->email){
 					if(md5($this->input->post('senha')) == $_usuario->senha){
-						$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email']]);
+						$this->accounts->changeHash($_usuario->id_usuario);
+						$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email'], "CadastroCompleto" => $_usuario->cadastro_completo]);
 						echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
 					} else {
 						echo json_encode(["code" => "2", "message" => "Senha inválida"]);
@@ -57,7 +58,7 @@ class Accounts extends CI_Controller {
 		if ($this->form_validation->run() === TRUE){
 			$return_id = $this->accounts->inserirUsuario();
 			if(is_integer($return_id)){
-				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email')]);
+				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email'), "CadastroCompleto" => "0"]);
 				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
 			} else {
 				echo $return_id;
@@ -66,7 +67,26 @@ class Accounts extends CI_Controller {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
 		}
 	}
-
+	
+	public function validate_continue(){
+		$this->form_validation->set_rules('dt_nascimento', 'Data Nascimento', 'trim|required');
+		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
+		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
+		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required|is_unique[tbl_usuario.super_usuario]');
+		
+		if ($this->form_validation->run() === TRUE){
+			$return_id = $this->accounts->inserirUsuario();
+			if(is_integer($return_id)){
+				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email'), "CadastroCompleto" => "0"]);
+				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
+			} else {
+				echo $return_id;
+			}
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}		
+	}
+	
 	public function validate_forgot(){
 		if (!$this->input->post('hash')) {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -75,7 +95,7 @@ class Accounts extends CI_Controller {
 				$_usuario = $this->accounts->getByEmail($this->input->post('email'));
 				if(!empty($_usuario)){
 					$hash = md5(date('Y-m-d H:i:s'));
-					$this->accounts->changeHash($_usuario->id_usuario, $hash, date('Y-m-d') . ' + 3 days');
+					$this->accounts->changeHash($_usuario->id_usuario, $hash, date_format(date_add(new DateTime("now"), date_interval_create_from_date_string('3 days')), 'Y-m-d'));
 					$this->sendemail->enviarEmailRecuperarSenha($_usuario->nome, $_usuario->email, $hash);
 					echo json_encode(["code" => "1", "message" => "Link de Recuperar a Senha foi enviado em seu E-mail."]);
 				} else {
@@ -91,7 +111,7 @@ class Accounts extends CI_Controller {
 			if ($this->form_validation->run() === TRUE) {
 				$_usuario = $this->accounts->getByHash($this->input->post('hash'));
 				if(!empty($_usuario)){
-					$this->accounts->changeHash($_usuario->id_usuario, "");
+					$this->accounts->changeHash($_usuario->id_usuario);
 					$this->accounts->changeSenha($_usuario->id_usuario, md5($this->input->post('senha')));
 					echo json_encode(["code" => "1", "message" => "Sua senha foi recuperada com sucesso!"]);
 				} else {
@@ -116,6 +136,7 @@ class Accounts extends CI_Controller {
 
 	public function logout()
 	{
+		$this->logout_account();
 		$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/logout/logout_success');
 		$this->load->view('accounts/includes/footer', $this->data);
@@ -123,6 +144,20 @@ class Accounts extends CI_Controller {
 
 	public function forgot($hash = '')
 	{
+		if(!empty($hash)){
+			$_usuario = $this->accounts->getByHash($hash);
+
+			if(!empty($_usuario)){
+				if ($_usuario->dt_hash_exp < date("Y-m-d")){
+					$this->data['hash_msg'] = 'Sua solicitação para recuperar a senha expirou. <br/> Solicite novamente!';
+					$hash = '';
+				}
+			} else {
+				$this->data['hash_msg'] = 'Não existe solicitação para recuperar senha.';
+				$hash = '';
+			}
+		}
+		
 		$this->data['hash'] = $hash;
 		$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/forgot/forgot', $this->data);
@@ -143,11 +178,19 @@ class Accounts extends CI_Controller {
 		$this->load->view('accounts/includes/footer', $this->data);
 	}
 
-	public function register_success()
+	public function continuar()
 	{
-		$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/register/register_success');
-		$this->load->view('accounts/includes/footer', $this->data);
+		if ($this->session->userdata("account")){
+			if ($this->session->userdata("account")['Logado']){
+				if ($this->session->userdata("account")["CadastroCompleto"] == "0"){
+					$_usuario = $this->accounts->getByEmail($this->session->userdata("account")["Email"]);
+					$this->data['_usuario'] = $_usuario;
+					$this->load->view('accounts/includes/header');
+					$this->load->view('accounts/register/continuar', $this->data);
+					$this->load->view('accounts/includes/footer', $this->data);
+				}
+			} else redirect();
+		} else redirect();
 	}
 
 }

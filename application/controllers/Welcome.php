@@ -21,7 +21,16 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->data["email"] = "";
+		if ($this->session->userdata("account")){
+			if ($this->session->userdata("account")['Logado']){
+				$this->data["email"] = $this->session->userdata("account")["Email"];
+				if ($this->session->userdata("account")["CadastroCompleto"] == "0"){
+					redirect("accounts/continue");
+				}
+			}
+		}
+		$this->load->view('welcome_message', $this->data);
 	}
 
 }
