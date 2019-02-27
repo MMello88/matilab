@@ -25,6 +25,22 @@ class Accounts_model extends CI_Model {
     	}
     }
 
+    public function updateContinuacao(){
+        $data = [
+            'dt_nascimento' => $this->input->post('dt_nascimento'),
+            'celular' => $this->input->post('celular'),
+            'sexo' => $this->input->post('sexo'),
+            'super_usuario' => $this->input->post('super_usuario'),
+            'cadastro_completo' => '1',
+        ];
+
+        $condicao = [
+            'email' => $this->session->userdata("account")["Email"],
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);
+    }
+
     public function getByEmail($email) {
         $query = $this->db->get_where('usuario', array('email' => $email));
         $result = $query->result_object();

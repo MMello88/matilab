@@ -3,7 +3,7 @@
   <div class="container col-lg-7" style="padding-top:200px;">
     <div class="card " >
       <div class="card-header ">
-        <h3>Olá <?= $_usuario->nome ?></h3>
+        <h3>Olá, <?= $_usuario->nome ?></h3>
         <hr>
         <p>Preciso que continue a informar mais alguns dados.</p>
       </div>
@@ -19,7 +19,7 @@
 
         <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
           <div class="form-group">
-            <input type="date" class="form-control"  id="dt_nascimento" name="dt_nascimento" placeholder="Data de Nascimento" value="<?= $_usuario->dt_nascimento?>" required>
+            <input type="date" class="form-control"  id="dt_nascimento" name="dt_nascimento" placeholder="Data de Nascimento" value="<?= date("Y-m-d",strtotime($_usuario->dt_nascimento)) ?>" required>
           </div>
           <div class="form-group">
             <input type="text" class="form-control"  id="celular" name="celular" placeholder="Número Celular" value="<?= $_usuario->celular?>" required>
@@ -37,7 +37,7 @@
             <label class="custom-control-label" for="customRadioInline2">Feminino</label>
           </div>
 
-    		  <input type="submit" class="btn btn-primary rounded-pill" value="Salvar">
+    		  <input type="submit" class="btn btn-primary rounded-pill float-right" value="Salvar">
         <?= form_close(); ?>
 
       </div>

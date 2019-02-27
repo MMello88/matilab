@@ -50,14 +50,14 @@ class Acconts {
 		
 		if (document.getElementById('formAccounts')){
 			document.getElementById('formAccounts').addEventListener('submit', function(e) {
-				this.validate(e.target, "validate_accounts");
+				this.validate(e.target, "validate_accounts", true);
 				e.preventDefault();
 			}.bind(this));
 		}
 		
 		if (document.getElementById('formRegisterAccount')){
 			document.getElementById('formRegisterAccount').addEventListener('submit', function(e) {
-				this.validate(e.target, "register_account");
+				this.validate(e.target, "register_account", true);
 				e.preventDefault();
 			}.bind(this));
 		}
@@ -71,7 +71,7 @@ class Acconts {
 		
 		if (document.getElementById('formAccountContinue')){
 			document.getElementById('formAccountContinue').addEventListener('submit', function(e) {
-				this.validate(e.target, "validate_continue");
+				this.validate(e.target, "validate_continue", true, 7000);
 				e.preventDefault();
 			}.bind(this));
 		}
@@ -96,7 +96,7 @@ class Acconts {
 			window.location = base_url + "Welcome";
 	}
 
-	validate(form, funct){
+	validate(form, funct, redirect = false, time = 0 ){
 		var me = this;
 		$.ajax({
 			type: "POST",
@@ -109,6 +109,16 @@ class Acconts {
 				document.getElementById('code').classList.add(this.respJson.alert);
 				document.getElementById('code').classList.add('show');
 				document.getElementById("message").innerHTML = this.respJson.message;
+
+				if (redirect){
+					if (time > 0) {
+						setInterval(function(){ me.validateSessionAccount(); }, time);
+					} else {
+						me.validateSessionAccount();
+					}
+					
+					
+				}
 			},
 			error: function(data) {
 				console.log(data);

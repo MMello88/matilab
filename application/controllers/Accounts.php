@@ -73,14 +73,13 @@ class Accounts extends CI_Controller {
 		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
 		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
 		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required|is_unique[tbl_usuario.super_usuario]');
-		
+		$email = $this->session->userdata("account")["Email"];
 		if ($this->form_validation->run() === TRUE){
-			$return_id = $this->accounts->inserirUsuario();
-			if(is_integer($return_id)){
-				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email'), "CadastroCompleto" => "0"]);
-				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
+			if($this->accounts->updateContinuacao()){
+				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $email, "CadastroCompleto" => "1"]);
+				echo json_encode(["code" => "1", "message" => "Muito obrigado. Seja bem vindo ao Matilab. Vai se surpreender com poder de uma agenda! <br> Você será redirecionado para pagina princial..."]);
 			} else {
-				echo $return_id;
+				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 			}
 		} else {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
