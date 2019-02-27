@@ -30,7 +30,7 @@
 
 						<input type="submit" id="enterAccount" class="btn btn-primary rounded-pill" value="Entrar">
 						<div class="form-group form-check pt-3 pb-0">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
+							<input type="checkbox" class="form-check-input" name="lembrar" id="exampleCheck1">
 							<label class="form-check-label" for="exampleCheck1">Lembre me - </label>
 							<a href="<?= base_url('forgot') ?>" class="link">Esqueceu sua senha?</a>
 						</div>
