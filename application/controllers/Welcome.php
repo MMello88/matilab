@@ -29,8 +29,12 @@ class Welcome extends CI_Controller {
 					redirect("accounts/continue");
 				}
 			}
+
+			$this->load->view('welcome_message', $this->data);
+		} else {
+			$this->load->view('welcome_message', $this->data);
 		}
-		$this->load->view('welcome_message', $this->data);
+		
 	}
 
 }
