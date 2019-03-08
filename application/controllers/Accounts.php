@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Accounts extends CI_Controller {
-
-	public $data;
+class Accounts extends MY_Controller {
 	
 	public function __construct(){
+		
 		parent::__construct();
+
 		$this->data['js'] = "<script src=\"".base_url("assets/js/accounts.js")."\" ></script>";
 	}
 

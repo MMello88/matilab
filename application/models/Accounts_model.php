@@ -60,4 +60,10 @@ class Accounts_model extends CI_Model {
     public function changeSenha($id_usuario, $senha){
         return $this->db->update('usuario', ['senha' => $senha], ['id_usuario' => $id_usuario]);
     }
+
+    public function getByCookie($hash) {
+        $query = $this->db->get_where('usuario', array('cookie_hash_auth' => $hash));
+        $result = $query->result_object();
+        return empty($result) ? "" : $result[0];
+    }
 }
