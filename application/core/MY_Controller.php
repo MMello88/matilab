@@ -41,8 +41,8 @@ class MY_Controller extends CI_Controller {
 
 
 	public function hasCookie(){
-		$hash = $this->input->cookie('account', true);
-
+		$hash = $this->input->cookie('code_cookie_hash');
+print_r($hash);
 		if ($hash){
 			$usuario = $this->account->getByCookie($hash);
 			if (empty($usuario)){

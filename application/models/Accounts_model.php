@@ -61,6 +61,18 @@ class Accounts_model extends CI_Model {
         return $this->db->update('usuario', ['senha' => $senha], ['id_usuario' => $id_usuario]);
     }
 
+    public function setByCookie($hash_cookie, $email) {
+        $data = [
+            'code_cookie_hash' => $hash_cookie,
+        ];
+
+        $condicao = [
+            'email' => $email,
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);
+    }
+
     public function getByCookie($hash) {
         $query = $this->db->get_where('usuario', array('cookie_hash_auth' => $hash));
         $result = $query->result_object();
