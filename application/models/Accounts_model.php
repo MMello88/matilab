@@ -74,7 +74,7 @@ class Accounts_model extends CI_Model {
     }
 
     public function getByCookie($hash) {
-        $query = $this->db->get_where('usuario', array('cookie_hash_auth' => $hash));
+        $query = $this->db->get_where('usuario', array('code_cookie_hash' => $hash));
         $result = $query->result_object();
         return empty($result) ? "" : $result[0];
     }

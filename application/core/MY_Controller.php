@@ -25,6 +25,7 @@ class MY_Controller extends CI_Controller {
 		} else {
 			$this->logged = true;
 		}
+		$this->hasCookie();
 	}
 
 	public function isLogged(){
@@ -41,10 +42,10 @@ class MY_Controller extends CI_Controller {
 
 
 	public function hasCookie(){
-		$hash = $this->input->cookie('code_cookie_hash');
+		$hash = $this->input->cookie('ci_session'); echo "Matheus";
 print_r($hash);
 		if ($hash){
-			$usuario = $this->account->getByCookie($hash);
+			$usuario = $this->accounts->getByCookie($hash);
 			if (empty($usuario)){
 				return false;
 			} else {

@@ -35,15 +35,16 @@ class Accounts extends MY_Controller {
 						$this->accounts->changeHash($_usuario->id_usuario);
 						$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email'], "CadastroCompleto" => $_usuario->cadastro_completo]);
 						if ($this->input->post('lembrar') == 'on'){
-							$hash_cookie = md5(date('Y-m-d H:m:s'));
+							$hash_cookie = $this->input->cookie("ci_session");
 							$this->accounts->setByCookie($hash_cookie, $_POST['email']);
-							$cookie = [
+							
+							/*$cookie = [
 								'name'   => 'code_cookie_hash',
 						        'value'  => $hash_cookie,
 						        'expire' => '60',
 							    'secure' => TRUE
 							];
-							$this->input->set_cookie($cookie);
+							$this->input->set_cookie($cookie);*/
 						}
 						echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
 					} else {
