@@ -10,7 +10,7 @@ class MY_Controller extends CI_Controller {
 	 * 
 	 * Sem vai exisit em seu conteúdo os valores do usuário
 	 *
-	 * Index of Array ["Logado", "Email", "CadastroCompleto"]
+	 * Object of account ["Logado", "Email", "CadastroCompleto"]
 	 *
 	 */
 	public $account;
@@ -20,37 +20,34 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		
 		if (!$this->isLogged()){
-			if ($this->hasCookie())
-				$this->logged = true;
+			$this->logged = false;
 		} else {
 			$this->logged = true;
 		}
-		$this->hasCookie();
+		
+		if (!$this->logged){
+			$this->logged = $this->hasCookie();
+		}
 	}
 
 	public function isLogged(){
 		if ($this->session->userdata("account")){
-			if ($this->session->userdata("account")['Logado']){
-				$this->account = $this->session->userdata("account");
-				return true;
-			} else {
-				return false;	
-			}
+			$this->account = (object)$this->session->userdata("account");
+			return true;
 		}
 		return false;
 	}
 
 
 	public function hasCookie(){
-		$hash = $this->input->cookie('ci_session'); echo "Matheus";
-print_r($hash);
+		$hash = $this->input->cookie('ci_session');
 		if ($hash){
 			$usuario = $this->accounts->getByCookie($hash);
 			if (empty($usuario)){
 				return false;
 			} else {
-				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $usuario->email, "CadastroCompleto" => $usuario->cadastro_completo]);
-				$this->account = $this->session->userdata("account");
+				$this->session->set_userdata("account",["Email" => $usuario->email, "CadastroCompleto" => $usuario->cadastro_completo, "cookie" => True]);
+				$this->account = (object)$this->session->userdata("account");
 				return true;
 			}
 		}

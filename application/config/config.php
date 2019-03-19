@@ -379,10 +379,10 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'database';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 86400;
+$config['sess_expiration'] = 86400; // 1 dia
 $config['sess_save_path'] = 'tbl_ci_sessions';
 $config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 3600;
+$config['sess_time_to_update'] = 3600; // 1 hora
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*

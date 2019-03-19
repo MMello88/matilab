@@ -11,18 +11,14 @@ class Accounts extends MY_Controller {
 	}
 
 	public function validate_session_account(){
-		if ($this->session->userdata("account")){
-			if ($this->session->userdata("account")['Logado'])
-				echo json_encode(["code" => "1", "message" => "true"]);
-			else
-				echo json_encode(["code" => "3", "message" => "false"]);
-		}
+		if ($this->logged)
+			echo json_encode(["code" => "1", "message" => "true"]);
 		else
 			echo json_encode(["code" => "3", "message" => "false"]);
 	}
 	
 	public function validate_accounts(){
-		$this->session->unset_userdata("account");
+		$this->logout_account();
 
 		$this->form_validation->set_rules('email', 'Usuário', 'trim|required|valid_email');
 		$this->form_validation->set_rules('senha', 'Password', 'trim|required|min_length[6]');
@@ -33,18 +29,9 @@ class Accounts extends MY_Controller {
 				if($this->input->post('email') == $_usuario->email){
 					if(md5($this->input->post('senha')) == $_usuario->senha){
 						$this->accounts->changeHash($_usuario->id_usuario);
-						$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $_POST['email'], "CadastroCompleto" => $_usuario->cadastro_completo]);
+						$this->session->set_userdata("account",["Email" => $_POST['email'], "CadastroCompleto" => $_usuario->cadastro_completo, "cookie" => $this->input->post('lembrar') == 'on' ? True : False]);
 						if ($this->input->post('lembrar') == 'on'){
-							$hash_cookie = $this->input->cookie("ci_session");
-							$this->accounts->setByCookie($hash_cookie, $_POST['email']);
-							
-							/*$cookie = [
-								'name'   => 'code_cookie_hash',
-						        'value'  => $hash_cookie,
-						        'expire' => '60',
-							    'secure' => TRUE
-							];
-							$this->input->set_cookie($cookie);*/
+							$this->accounts->setByCookie($this->input->cookie("ci_session"), $_POST['email']);
 						}
 						echo json_encode(["code" => "1", "message" => "Usuário e Senha estão corretas"]);
 					} else {
@@ -70,7 +57,7 @@ class Accounts extends MY_Controller {
 		if ($this->form_validation->run() === TRUE){
 			$return_id = $this->accounts->inserirUsuario();
 			if(is_integer($return_id)){
-				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $this->input->post('email'), "CadastroCompleto" => "0"]);
+				$this->session->set_userdata("account",["Email" => $this->input->post('email'), "CadastroCompleto" => "0", "cookie" => False]);
 				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
 			} else {
 				echo $return_id;
@@ -85,10 +72,9 @@ class Accounts extends MY_Controller {
 		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
 		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
 		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required|is_unique[tbl_usuario.super_usuario]');
-		$email = $this->session->userdata("account")["Email"];
 		if ($this->form_validation->run() === TRUE){
 			if($this->accounts->updateContinuacao()){
-				$this->session->set_userdata("account",["Logado" => TRUE, "Email" => $email, "CadastroCompleto" => "1"]);
+				$this->session->set_userdata("account",["Email" => $this->account->Email, "CadastroCompleto" => "1", "cookie" => False]);
 				echo json_encode(["code" => "1", "message" => "Muito obrigado. Seja bem vindo ao Matilab. Vai se surpreender com poder de uma agenda! <br> Você será redirecionado para pagina princial..."]);
 			} else {
 				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
@@ -136,6 +122,7 @@ class Accounts extends MY_Controller {
 
 	public function logout_account(){
 		$this->session->unset_userdata("account");
+		$this->account = null;
 	}
 	
 	public function accounts()
@@ -191,16 +178,14 @@ class Accounts extends MY_Controller {
 
 	public function continuar()
 	{
-		if ($this->session->userdata("account")){
-			if ($this->session->userdata("account")['Logado']){
-				if ($this->session->userdata("account")["CadastroCompleto"] == "0"){
-					$_usuario = $this->accounts->getByEmail($this->session->userdata("account")["Email"]);
-					$this->data['_usuario'] = $_usuario;
-					$this->load->view('accounts/includes/header');
-					$this->load->view('accounts/register/continuar', $this->data);
-					$this->load->view('accounts/includes/footer', $this->data);
-				}
-			} else redirect();
+		if ($this->logged){
+			if ($this->account->CadastroCompleto == "0"){
+				$_usuario = $this->accounts->getByEmail($this->account->Email);
+				$this->data['_usuario'] = $_usuario;
+				$this->load->view('accounts/includes/header');
+				$this->load->view('accounts/register/continuar', $this->data);
+				$this->load->view('accounts/includes/footer', $this->data);
+			}
 		} else redirect();
 	}
 

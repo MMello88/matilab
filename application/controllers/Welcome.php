@@ -21,20 +21,14 @@ class Welcome extends MY_Controller {
 
 	public function index()
 	{
-		$this->data["email"] = "";
-		
-		if ($this->session->userdata("account")){
-			if ($this->session->userdata("account")['Logado']){
-				$this->data["email"] = $this->session->userdata("account")["Email"];
-				if ($this->session->userdata("account")["CadastroCompleto"] == "0"){
-					redirect("accounts/continue");
-				}
+		if ($this->logged){
+			$this->data["email"] = $this->account->Email;
+			if ($this->account->CadastroCompleto == "0"){
+				redirect("accounts/continue");
 			}
-
-			$this->load->view('welcome_message', $this->data);
-		} else {
-			$this->load->view('welcome_message', $this->data);
 		}
+
+		$this->load->view('welcome_message', $this->data);
 		
 	}
 
