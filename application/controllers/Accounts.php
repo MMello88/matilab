@@ -127,9 +127,10 @@ class Accounts extends MY_Controller {
 	
 	public function accounts()
 	{
-		$this->load->view('accounts/includes/header');
+		/*$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/accounts/accounts');
-		$this->load->view('accounts/includes/footer', $this->data);
+		$this->load->view('accounts/includes/footer', $this->data);*/
+		$this->load->view('accounts/accounts/auth-signin-v1', $this->data);
 	}
 
 	public function logout()

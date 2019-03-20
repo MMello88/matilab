@@ -42,6 +42,17 @@ class ResponseJson {
 		if(this._code == '4')
 			return 'alert-danger';
 	}
+
+	get alertMsg(){
+		if(this._code == '1')
+			return 'Muito bem.';
+		if(this._code == '2')
+			return 'Informação.';
+		if(this._code == '3')
+			return 'Cuidado.';
+		if(this._code == '4')
+			return 'Perigo.';
+	}
 }
 
 class Acconts {
@@ -106,10 +117,7 @@ class Acconts {
 				console.log(data.responseText);
 				console.log(data);
 				this.respJson = new ResponseJson(data);
-				document.getElementById('code').classList.add(this.respJson.alert);
-				document.getElementById('code').classList.add('show');
-				document.getElementById("message").innerHTML = this.respJson.message;
-
+				$(form).prepend("<div class='alert "+this.respJson.alert+" alert-dismissible fade show' id='code'><button type='button' class='close' data-dismiss='alert'>X</button> <strong>"+this.respJson.alertMsg+"</strong> "+this.respJson.message+"</div>");
 				if (redirect){
 					if (time > 0) {
 						setInterval(function(){ me.validateSessionAccount(); }, time);
