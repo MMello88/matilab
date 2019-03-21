@@ -136,9 +136,10 @@ class Accounts extends MY_Controller {
 	public function logout()
 	{
 		$this->logout_account();
-		$this->load->view('accounts/includes/header');
+		/*$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/logout/logout_success');
-		$this->load->view('accounts/includes/footer', $this->data);
+		$this->load->view('accounts/includes/footer', $this->data);*/
+		$this->load->view('accounts/logout/auth-signin-v2', $this->data);
 	}
 
 	public function forgot($hash = '')

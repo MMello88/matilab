@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title> Sign In | Matilab </title>
-    <meta property="og:title" content="Sign In">
+    <title> Sign out success | Looper - Bootstrap 4 Admin Theme </title>
+    <meta property="og:title" content="Sign out success">
     <meta name="author" content="Matheus de Mello">
     <meta property="og:locale" content="pt_BR">
     <meta name="description" content="Gerencie seu tempo, seus projetos e sua vida.">
@@ -31,14 +31,14 @@
     </script><!-- End SEO tag -->
     <script>
       var base_url = "<?= base_url(); ?>";
-    </script>
+    </script>    
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url_assets("assets/apple-touch-icon.png") ?>">
     <link rel="shortcut icon" href="<?= base_url_assets("assets/favicon.ico") ?>">
     <meta name="theme-color" content="#3063A0"><!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End Google font -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/fontawesome/css/all.css") ?>"><!-- END PLUGINS STYLES -->
+        <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/fontawesome/css/all.css") ?>"><!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme.min.css") ?>" data-skin="default">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme-dark.min.css") ?>" data-skin="dark">
@@ -55,30 +55,26 @@
     <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
     <![endif]-->
     <!-- .auth -->
-    <main class="auth">
-      <header id="auth-header" class="auth-header" style="background-image: url(<?= base_url_assets("assets/images/illustration/img-1.png") ?>);">
-        <h1>
-          <img src="<?= base_url_assets("assets/images/brand-inverse.png") ?>" alt="" height="72"> <span class="sr-only">Sign In</span>
-        </h1>
-        <p> Não tem uma conta? <a href="<?= base_url('accounts/register') ?>">Crie sua conta</a>
-        </p>
-      </header><!-- form -->
-        
-        <?= form_open("accounts", array("class" => "auth-form", "id" => "formAccounts")) ?>
-        <!-- .form-group -->
-        <div class="form-group">
-          <div class="form-label-group">
-            <input type="email" id="inputUser" class="form-control" autocomplete="current-password" name="email" placeholder="Enter E-mail" required="" autofocus=""> <label for="inputUser">E-mail</label>
+    <main class="auth auth-floated">
+      <!-- form -->
+      <?= form_open("accounts", array("class" => "auth-form", "id" => "formAccounts")) ?>
+        <div class="mb-4">
+          <div class="mb-3">
+            <img class="rounded" src="<?= base_url_assets("assets/apple-touch-icon.png") ?>" alt="" height="72">
           </div>
+          <h1 class="h3"> Sign In </h1>
+        </div>
+        <p class="text-left mb-4"> Não tem uma conta? <a href="<?= base_url('accounts/register') ?>">Crie sua conta</a>
+        </p><!-- .form-group -->
+        <div class="form-group mb-4">
+          <label class="d-block text-left" for="inputUser">Username</label> <input type="email" id="inputUser" class="form-control form-control-lg" autocomplete="current-password" name="email" placeholder="Enter E-mail" required="" autofocus="">
         </div><!-- /.form-group -->
         <!-- .form-group -->
-        <div class="form-group">
-          <div class="form-label-group">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="senha" required=""> <label for="inputPassword">Password</label>
-          </div>
+        <div class="form-group mb-4">
+          <label class="d-block text-left" for="inputPassword">Password</label> <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" name="senha" required="">
         </div><!-- /.form-group -->
         <!-- .form-group -->
-        <div class="form-group">
+        <div class="form-group mb-4">
           <button class="btn btn-lg btn-primary btn-block" id="enterAccount" type="submit">Logar</button>
         </div><!-- /.form-group -->
         <!-- .form-group -->
@@ -88,13 +84,19 @@
           </div>
         </div><!-- /.form-group -->
         <!-- recovery links -->
-        <div class="text-center pt-3">
+        <p class="py-2">
           <a href="<?= base_url('forgot') ?>" class="link">Esqueceu Password?</a>
-        </div><!-- /recovery links -->
+        </p><!-- /recovery links -->
+        <!-- copyright -->
+        <p class="mb-0 px-3 text-muted text-center"> © 2019 All Rights Reserved. <a href="#">Privacy</a> and <a href="#">Terms</a>
+        </p>
       </form><!-- /.auth-form -->
-      <!-- copyright -->
-      <footer class="auth-footer"> © 2019 All Rights Reserved. <a href="#">Privacy</a> and <a href="#">Terms</a>
-      </footer>
+      <!-- .auth-announcement -->
+      <div id="announcement" class="auth-announcement" style="background-image: url(<?= base_url_assets("assets/images/illustration/img-1.png") ?>);">
+        <div class="announcement-body">
+          <h2 class="announcement-title"> Como se preparar para um futuro automatizado? </h2><a href="#" class="btn btn-warning"><i class="fa fa-fw fa-angle-right"></i> Aguardamos sua volta.</a>
+        </div>
+      </div><!-- /.auth-announcement -->
     </main><!-- /.auth -->
     <!-- BEGIN BASE JS -->
     <script src="<?= base_url_assets("assets/vendor/jquery/jquery.min.js") ?>"></script>
@@ -110,7 +112,7 @@
       $(document).on('theme:init', () =>
       {
         /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-        particlesJS.load('auth-header', '<?= base_url_assets("assets/javascript/pages/particles.json") ?>');
+        particlesJS.load('announcement', 'assets/javascript/pages/particles.json');
       })
     </script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
