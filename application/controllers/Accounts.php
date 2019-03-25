@@ -94,7 +94,7 @@ class Accounts extends MY_Controller {
 					$hash = md5(date('Y-m-d H:i:s'));
 					$this->accounts->changeHash($_usuario->id_usuario, $hash, date_format(date_add(new DateTime("now"), date_interval_create_from_date_string('3 days')), 'Y-m-d'));
 					$this->sendemail->enviarEmailRecuperarSenha($_usuario->nome, $_usuario->email, $hash);
-					echo json_encode(["code" => "1", "message" => "Link de Recuperar a Senha foi enviado em seu E-mail."]);
+					echo json_encode(["code" => "1", "message" => "Link de Recuperação da senha foi enviado em seu E-mail."]);
 				} else {
 					echo json_encode(["code" => "2", "message" => "Usuário não foi encontrado."]);
 				}
@@ -159,16 +159,19 @@ class Accounts extends MY_Controller {
 		}
 		
 		$this->data['hash'] = $hash;
-		$this->load->view('accounts/includes/header');
+		$this->load->view('accounts/forgot/auth-recovery-password', $this->data);
+		/*$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/forgot/forgot', $this->data);
-		$this->load->view('accounts/includes/footer', $this->data);
+		$this->load->view('accounts/includes/footer', $this->data);*/
 	}
 
 	public function register()
 	{
-		$this->load->view('accounts/includes/header');
+		/*$this->load->view('accounts/includes/header');
 		$this->load->view('accounts/register/register');
-		$this->load->view('accounts/includes/footer', $this->data);
+		$this->load->view('accounts/includes/footer', $this->data);*/
+		$this->load->view('accounts/register/auth-signup', $this->data);
+		
 	}
 
 	public function register_ativado()
