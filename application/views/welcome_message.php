@@ -2,91 +2,142 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- End Required meta tags -->
+    <!-- Begin SEO tag -->
+    <title> Em breve | Matilab </title>
+    <meta property="og:title" content="Sign In">
+    <meta name="author" content="Matheus de Mello">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="description" content="Gerencie seu tempo, seus projetos e sua vida.">
+    <meta property="og:description" content="Gerencie seu tempo, seus projetos e sua vida.">
+    <link rel="canonical" href="http://matilab.com.br">
+    <meta property="og:url" content="http://matilab.com.br">
+    <meta property="og:site_name" content="Matilab - Seu Gerenciamento seu tempo!">
+    <script type="application/ld+json">
+      {
+        "name": "Matilab - Seu Gerenciamento seu tempo!",
+        "description": "Gerencie seu tempo, seus projetos e sua vida.",
+        "author":
+        {
+          "@type": "Matheus",
+          "name": "Matheus de Mello"
+        },
+        "@type": "WebSite",
+        "url": "",
+        "headline": "Sign In",
+        "@context": "http://schema.org"
+      }
+    </script><!-- End SEO tag -->
+    <script>
+      var base_url = "<?= base_url(); ?>";
+    </script>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url_assets("assets/apple-touch-icon.png") ?>">
+    <link rel="shortcut icon" href="<?= base_url_assets("assets/favicon.ico") ?>">
+    <meta name="theme-color" content="#3063A0"><!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End Google font -->
+    <!-- BEGIN PLUGINS STYLES -->
+    <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/fontawesome/css/all.css") ?>"><!-- END PLUGINS STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme.min.css") ?>" data-skin="default">
+    <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme-dark.min.css") ?>" data-skin="dark">
+    <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/custom.css") ?>"><!-- Disable unused skin immediately -->
+    <script> var skin = localStorage.getItem('skin') || 'default';
+      var unusedLink = document.querySelector('link[data-skin]:not([data-skin="'+ skin +'"])');
 
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	<h1>Welcome to CodeIgniter! <?= isset($email) ? $email : "" ?></h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	
-		<code><a href="<?= base_url("accounts"); ?>">Login</a></code>
-		<code style="float:left"><a href="<?= base_url("logout"); ?>">Sair</a></code>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
-</body>
+      unusedLink.setAttribute('rel', '');
+      unusedLink.setAttribute('disabled', true);
+    </script><!-- END THEME STYLES -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+    <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+    <![endif]-->
+    <!-- .empty-state -->
+    <main id="comingsoon" class="empty-state empty-state-fullpage bg-primary text-white" style="background-image: url(<?= base_url_assets("assets/images/illustration/img-1.png") ?>);">
+      <!-- .empty-state-container -->
+      <div class="empty-state-container">
+        <h1 class="state-header"> EM BREVE </h1>
+        <div id="clock" class="countdown display-3">
+          <div class="countdown-item"> 00 <small>Days</small>
+          </div>
+          <div class="countdown-item"> 00 <small>Hr</small>
+          </div>
+          <div class="countdown-item"> 00 <small>Min</small>
+          </div>
+          <div class="countdown-item"> 00 <small>Sec</small>
+          </div>
+        </div>
+        <p class="state-description lead"> We're a Creative Agency based in Europe. Be the first to know when we live. </p>
+        <form class="w-75 mx-auto">
+          <div class="form-group">
+            <div class="input-group bg-white border-white input-group-lg circle">
+              <input type="email" class="form-control text-black" placeholder="Your email">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-warning circle"><span class="d-none d-sm-inline">Subcribe</span> <span class="d-inline d-sm-none" aria-label="Subcribe"><i class="fa fa-arrow-circle-right"></i></span></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="state-action"> 
+          <a href="<?= base_url("accounts"); ?>" class="btn btn-reset"><i class="fab fa-fw fa-sign"></i></a> 
+          <a href="<?= base_url("logout"); ?>" class="btn btn-reset"><i class="fab fa-fw fa-sign-out-alt"></i></a> 
+          <a href="#" class="btn btn-reset"><i class="fab fa-fw fa-facebook"></i></a> 
+          <a href="#" class="btn btn-reset"><i class="fab fa-fw fa-twitter"></i></a> 
+          <a href="#" class="btn btn-reset"><i class="fab fa-fw fa-instagram"></i></a> 
+          <a href="#" class="btn btn-reset"><i class="fab fa-fw fa-linkedin"></i></a>
+        </div>
+      </div><!-- /.empty-state-container -->
+    </main><!-- /.empty-state -->
+    <!-- BEGIN BASE JS -->
+    <script src="<?= base_url_assets("assets/vendor/jquery/jquery.min.js") ?>"></script>
+    <script src="<?= base_url_assets("assets/vendor/bootstrap/js/popper.min.js") ?>"></script>
+    <script src="<?= base_url_assets("assets/vendor/bootstrap/js/bootstrap.min.js") ?>"></script> <!-- END BASE JS -->
+    <!-- BEGIN PLUGINS JS -->
+    <script src="<?= base_url_assets("assets/vendor/particles.js/particles.min.js") ?>"></script> <!-- END PLUGINS JS -->
+    <!-- BEGIN THEME JS -->
+    <script src="<?= base_url_assets("assets/javascript/theme.min.js") ?>"></script> <!-- END THEME JS -->
+    <!-- BEGIN JS -->
+    <script>
+      /**
+       * Keep in mind that your scripts may not always be executed after the theme is completely ready,
+       * you might need to observe the `theme:load` event to make sure your scripts are executed after the theme is ready.
+       */
+      $(document).on('theme:init', () =>
+      {
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+        particlesJS.load('comingsoon', '<?= base_url_assets("assets/javascript/pages/particles-comingsoon.json") ?>');
+        // Set the date we're counting down to
+        var countDownDate = new Date('June 30, 2019 15:37:25').getTime();
+        var countDownFormater = function(i)
+        {
+          return i < 10 ? '0' + i : i;
+        }
+        // Update the count down every 1 second
+        var countDown = setInterval(function()
+        {
+          // Get todays date and time
+          var now = new Date().getTime();
+          // Find the distance between now an the count down date
+          var distance = countDownDate - now;
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          // Display the result in the element with id='clock'
+          document.querySelector('#clock').innerHTML = '' + '<div class="countdown-item">' + countDownFormater(days) + ' <small>Days<\/small><\/div>' + '<div class="countdown-item">' + countDownFormater(hours) + ' <small>Hr<\/small><\/div>' + '<div class="countdown-item">' + countDownFormater(minutes) + ' <small>Min<\/small><\/div>' + '<div class="countdown-item">' + countDownFormater(seconds) + ' <small>Sec<\/small><\/div>';
+          // If the count down is finished, write some text
+          if (distance < 0)
+          {
+            clearInterval(countDown);
+            document.querySelector('#clock').innerHTML = 'We\'ll Live Soon';
+          }
+        }, 1000);
+      })
+    </script> <!-- END JS -->
+  </body>
 </html>
