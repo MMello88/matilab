@@ -715,6 +715,25 @@
                           <div id="test-l-2" class="content dstepper-none fade">
                             <!-- fieldset -->
                             <fieldset>
+                              <legend>Informe a Chave de Segurança</legend> <!-- .custom-control -->
+                              <div class="form-group mb-4">
+                                <div class="form-label-group">
+                                  <input type="text" id="super_usuario" class="form-control" name="super_usuario" value="<?= $_usuario->super_usuario?>" data-parsley-group="fieldset02" placeholder="@Super Usuário" required=""> <label for="super_usuario">@Super Usuário</label>
+                                </div>
+                                <div class="invalid-feedback"> Por favor entre com nome de Super Usuário. </div>
+                              </div><!-- /.form-group -->
+                              <hr class="mt-5">
+                              <div class="d-flex">
+                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
+                              </div>
+                            </fieldset><!-- /fieldset -->
+                          </div><!-- /.content -->
+                        </form>
+                        <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
+                          <!-- .content -->
+                          <div id="test-l-3" class="content dstepper-none fade">
+                            <!-- fieldset -->
+                            <fieldset>
                               <legend>Informação do Perfil</legend> <!-- .row -->
                               <div class="row">
                                 <!-- grid column -->
@@ -742,7 +761,7 @@
                               <!-- .form-group -->
                               <div class="form-group mb-4">
                                 <div class="custom-control custom-radio mb-4">
-                                  <input type="radio" id="customRadioSexoMasculino" class="custom-control-input" name="sexo" value="m" data-parsley-group="fieldset02" required="" <?= $_usuario->sexo == "m" ? "checked" : "" ?>> <label class="custom-control-label" for="customRadioSexoMasculino">Masculino</label> <!-- .custom-control-hint -->
+                                  <input type="radio" id="customRadioSexoMasculino" class="custom-control-input" name="sexo" value="m" required="" <?= $_usuario->sexo == "m" ? "checked" : "" ?>> <label class="custom-control-label" for="customRadioSexoMasculino">Masculino</label> <!-- .custom-control-hint -->
                                 </div><!-- /.custom-control -->
                                 <!-- .custom-control -->
                                 <div class="custom-control custom-radio mb-4">
@@ -752,94 +771,6 @@
                               <hr class="mt-5">
                               <div class="d-flex">
                                 <button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset02">Next step</button>
-                              </div>
-                            </fieldset><!-- /fieldset -->
-                          </div><!-- /.content -->
-                        </form>
-                        <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
-                          <!-- .content -->
-                          <div id="test-l-3" class="content dstepper-none fade">
-                            <!-- fieldset -->
-                            <fieldset>
-                              <legend>Payment Information</legend> <!-- .custom-control -->
-                              <div class="custom-control custom-radio mb-4">
-                                <input type="radio" id="pmd1" class="custom-control-input" name="paymentMethod" value="creditcard" data-parsley-group="fieldset03" required=""> <label class="custom-control-label" for="pmd1">Credit card</label> <!-- .custom-control-hint -->
-                                <div class="custom-control-hint">
-                                  <!-- .row -->
-                                  <div class="row">
-                                    <!-- form col -->
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <div class="form-label-group">
-                                          <input type="text" id="pm1" name="ccholder" class="form-control" data-parsley-group="creditcard" placeholder="Name on card" required=""> <label for="pm1">Card holder</label>
-                                        </div>
-                                      </div>
-                                    </div><!-- /form col -->
-                                    <!-- form col -->
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <div class="form-label-group">
-                                          <input type="text" name="ccnumber" class="form-control" id="pm2" data-mask="cc" data-parsley-group="creditcard" placeholder="4242 4242 4242 4242" required=""> <label for="pm2">Card number</label>
-                                        </div>
-                                      </div>
-                                    </div><!-- /form col -->
-                                  </div><!-- /.row -->
-                                  <!-- .row -->
-                                  <div class="row">
-                                    <!-- form col -->
-                                    <div class="col-md-3">
-                                      <div class="form-group">
-                                        <div class="form-label-group">
-                                          <input type="text" id="pm3" name="ccexpdate" class="form-control" data-mask="expdatecc" data-parsley-group="creditcard" placeholder="MM/YY" required=""> <label for="pm3">Exp. date</label>
-                                        </div>
-                                      </div>
-                                    </div><!-- /form col -->
-                                    <!-- form col -->
-                                    <div class="col-md-3">
-                                      <div class="form-group">
-                                        <div class="form-label-group">
-                                          <input type="text" id="pm4" name="cccvc" class="form-control" data-mask="cvc" data-parsley-group="creditcard" placeholder="XXX" required=""> <label for="pm4">CVC</label>
-                                        </div>
-                                      </div>
-                                    </div><!-- /form col -->
-                                    <!-- form col -->
-                                    <div class="col-md-6">
-                                      <!-- you can change attribute type to type="submit" on your real project -->
-                                      <button type="button" id="savecc" class="btn btn-lg btn-primary btn-block">Save</button>
-                                    </div><!-- /form col -->
-                                  </div><!-- /.row -->
-                                </div><!-- /.custom-control-hint -->
-                              </div><!-- /.custom-control -->
-                              <!-- .custom-control -->
-                              <div class="custom-control custom-radio mb-4">
-                                <input type="radio" id="pmd2" class="custom-control-input" name="paymentMethod" value="paypal" checked> <label class="custom-control-label" for="pmd2">Paypal</label> <!-- .custom-control-hint -->
-                                <div class="custom-control-hint">
-                                  <div class="row">
-                                    <div class="col-md-10 col-lg-8">
-                                      <div class="form-group">
-                                        <div class="input-group h-auto">
-                                          <div class="form-label-group">
-                                            <input type="text" name="paypalid" class="form-control" value="paypal@looper.com" readonly> <label>Personal account</label>
-                                          </div>
-                                          <div class="input-group-append ml-auto">
-                                            <span class="input-group-text text-success"><strong>Connected</strong></span>
-                                          </div>
-                                        </div>
-                                      </div><button class="btn btn-danger" type="button">Disconnect</button>
-                                    </div>
-                                  </div>
-                                </div><!-- /.custom-control-hint -->
-                              </div><!-- /.custom-control -->
-                              <!-- .custom-control -->
-                              <div class="custom-control custom-radio mb-4">
-                                <input type="radio" id="pmd3" class="custom-control-input" name="paymentMethod" value="stripe"> <label class="custom-control-label" for="pmd3">Stripe</label> <!-- .custom-control-hint -->
-                                <div class="custom-control-hint">
-                                  <button class="btn btn-primary" type="button">Connect with <strong><em>Stripe</em></strong></button>
-                                </div><!-- /.custom-control-hint -->
-                              </div><!-- /.custom-control -->
-                              <hr class="mt-5">
-                              <div class="d-flex">
-                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
                               </div>
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
