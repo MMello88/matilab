@@ -187,9 +187,11 @@ class Accounts extends MY_Controller {
 			if ($this->account->CadastroCompleto == "0"){
 				$_usuario = $this->accounts->getByEmail($this->account->Email);
 				$this->data['_usuario'] = $_usuario;
-				$this->load->view('accounts/includes/header');
+				/*$this->load->view('accounts/includes/header');
 				$this->load->view('accounts/register/continuar', $this->data);
-				$this->load->view('accounts/includes/footer', $this->data);
+				$this->load->view('accounts/includes/footer', $this->data);*/
+				$this->load->view('accounts/register/component-steps', $this->data);
+				
 			}
 		} else redirect();
 	}
