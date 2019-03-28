@@ -94,65 +94,10 @@
                           <img src="assets/images/avatars/uifaces15.jpg" alt="">
                         </div>
                         <div class="dropdown-item-body">
-                          <p class="text"> Jeffrey Wells created a schedule </p><span class="date">Just now</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item unread">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces16.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Anna Vargas logged a chat </p><span class="date">3 hours ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces17.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Sara Carr invited to Stilearn Admin </p><span class="date">5 hours ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces18.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Arthur Carroll updated a project </p><span class="date">1 day ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces19.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Hannah Romero created a task </p><span class="date">1 day ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces20.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Angela Peterson assign a task to you </p><span class="date">2 days ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces21.jpg" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="text"> Shirley Mason and 3 others followed you </p><span class="date">2 days ago</span>
+                          <p class="text"> Tornou-se membro do MatiLab </p><span class="date"><?= date("d/m/Y",strtotime($_usuario->dt_cadastro)) ?></span>
                         </div>
                       </a> <!-- /.dropdown-item -->
                     </div><!-- /.dropdown-scroll -->
-                    <a href="user-activities.html" class="dropdown-footer">All activities <i class="fas fa-fw fa-long-arrow-alt-right"></i></a>
                   </div><!-- /.dropdown-menu -->
                 </li><!-- /.nav-item -->
                 <!-- .nav-item -->
@@ -161,7 +106,7 @@
                   <div class="dropdown-arrow"></div><!-- .dropdown-menu -->
                   <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
                     <h6 class="dropdown-header stop-propagation">
-                      <span>Messages</span> <a href="#">Mark all as read</a>
+                      <span>Messages</span>
                     </h6><!-- .dropdown-scroll -->
                     <div class="dropdown-scroll perfect-scrollbar">
                       <!-- .dropdown-item -->
@@ -170,96 +115,20 @@
                           <img src="assets/images/avatars/team1.jpg" alt="">
                         </div>
                         <div class="dropdown-item-body">
-                          <p class="subject"> Stilearning </p>
-                          <p class="text text-truncate"> Invitation: Joe's Dinner @ Fri Aug 22 </p><span class="date">2 hours ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/team3.png" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="subject"> Openlane </p>
-                          <p class="text text-truncate"> Final reminder: Upgrade to Pro </p><span class="date">23 hours ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="tile tile-circle bg-green"> GZ </div>
-                        <div class="dropdown-item-body">
-                          <p class="subject"> Gogo Zoom </p>
-                          <p class="text text-truncate"> Live healthy with this wireless sensor. </p><span class="date">1 day ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="tile tile-circle bg-teal"> GD </div>
-                        <div class="dropdown-item-body">
-                          <p class="subject"> Gold Dex </p>
-                          <p class="text text-truncate"> Invitation: Design Review @ Mon Jul 7 </p><span class="date">1 day ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="user-avatar">
-                          <img src="assets/images/avatars/team2.png" alt="">
-                        </div>
-                        <div class="dropdown-item-body">
-                          <p class="subject"> Creative Division </p>
-                          <p class="text text-truncate"> Need some feedback on this please </p><span class="date">2 days ago</span>
-                        </div>
-                      </a> <!-- /.dropdown-item -->
-                      <!-- .dropdown-item -->
-                      <a href="#" class="dropdown-item">
-                        <div class="tile tile-circle bg-pink"> LD </div>
-                        <div class="dropdown-item-body">
-                          <p class="subject"> Lab Drill </p>
-                          <p class="text text-truncate"> Our UX exercise is ready </p><span class="date">6 days ago</span>
+                          <p class="subject"> Seja Bem-Vindo </p>
+                          <p class="text text-truncate"> Felicitações <?= $_usuario->nome ?> </p><span class="date"><?= date("d/m/Y",strtotime($_usuario->dt_cadastro)) ?></span>
                         </div>
                       </a> <!-- /.dropdown-item -->
                     </div><!-- /.dropdown-scroll -->
-                    <a href="page-messages.html" class="dropdown-footer">All messages <i class="fas fa-fw fa-long-arrow-alt-right"></i></a>
                   </div><!-- /.dropdown-menu -->
-                </li><!-- /.nav-item -->
-                <!-- .nav-item -->
-                <li class="nav-item dropdown header-nav-dropdown">
-                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-grid-three-up"></span></a>
-                  <div class="dropdown-arrow"></div><!-- .dropdown-menu -->
-                  <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
-                    <!-- .dropdown-sheets -->
-                    <div class="dropdown-sheets">
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-indigo"><i class="oi oi-people"></i></span> <span class="tile-peek">Teams</span></a>
-                      </div><!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-teal"><i class="oi oi-fork"></i></span> <span class="tile-peek">Projects</span></a>
-                      </div><!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-pink"><i class="fa fa-tasks"></i></span> <span class="tile-peek">Tasks</span></a>
-                      </div><!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-yellow"><i class="oi oi-fire"></i></span> <span class="tile-peek">Feeds</span></a>
-                      </div><!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-cyan"><i class="oi oi-document"></i></span> <span class="tile-peek">Files</span></a>
-                      </div><!-- /.dropdown-sheet-item -->
-                    </div><!-- .dropdown-sheets -->
-                  </div><!-- .dropdown-menu -->
                 </li><!-- /.nav-item -->
               </ul><!-- /.nav -->
               <!-- .btn-account -->
               <div class="dropdown">
-                <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img src="assets/images/avatars/profile.jpg" alt=""></span> <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name">Beni Arisandi</span> <span class="account-description">Marketing Manager</span></span></button>
+                <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img src="<?= base_url_assets("assets/images/avatars/profile.jpg") ?>" alt=""></span> <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name"><?= $_usuario->nome ?></span> <span class="account-description"><?= $_usuario->super_usuario ?></span></span></button>
                 <div class="dropdown-arrow dropdown-arrow-left"></div><!-- .dropdown-menu -->
                 <div class="dropdown-menu">
-                  <h6 class="dropdown-header d-none d-md-block d-lg-none"> Beni Arisandi </h6><a class="dropdown-item" href="user-profile.html"><span class="dropdown-icon oi oi-person"></span> Profile</a> <a class="dropdown-item" href="auth-signin-v1.html"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Help Center</a> <a class="dropdown-item" href="#">Ask Forum</a> <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
+                  <h6 class="dropdown-header d-none d-md-block d-lg-none"> <?= $_usuario->nome?> </h6><a class="dropdown-item" href="#"><span class="dropdown-icon oi oi-person"></span> Profile</a> <a class="dropdown-item" href="<?= base_url("logout") ?>"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
                 </div><!-- /.dropdown-menu -->
               </div><!-- /.btn-account -->
             </div><!-- /.top-bar-item -->
@@ -273,7 +142,7 @@
           <!-- .aside-header -->
           <header class="aside-header d-block d-md-none">
             <!-- .btn-account -->
-            <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside"><span class="user-avatar user-avatar-lg"><img src="assets/images/avatars/profile.jpg" alt=""></span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span> <span class="account-summary"><span class="account-name">Beni Arisandi</span> <span class="account-description">Marketing Manager</span></span></button> <!-- /.btn-account -->
+            <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside"><span class="user-avatar user-avatar-lg"><img src="<?= base_url_assets("assets/images/avatars/profile.jpg") ?>" alt=""></span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span> <span class="account-summary"><span class="account-name"><?= $_usuario->nome ?></span> <span class="account-description"><?= $_usuario->super_usuario ?></span></span></button> <!-- /.btn-account -->
             <!-- .dropdown-aside -->
             <div id="dropdown-aside" class="dropdown-aside collapse">
               <!-- dropdown-items -->
@@ -292,338 +161,6 @@
                 <!-- .menu-item -->
                 <li class="menu-item">
                   <a href="index.html" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span> <span class="menu-text">App Pages</span> <span class="badge badge-warning">New</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="page-clients.html" class="menu-link">Clients</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-teams.html" class="menu-link">Teams</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Team</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="page-team.html" class="menu-link">Overview</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-team-feeds.html" class="menu-link">Feeds</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-team-projects.html" class="menu-link">Projects</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-team-members.html" class="menu-link">Members</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Project</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="page-project.html" class="menu-link">Overview</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-project-board.html" class="menu-link">Board</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-project-gantt.html" class="menu-link">Gantt View</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-calendar.html" class="menu-link">Calendar</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Invoices</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="page-invoices.html" class="menu-link">List</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-invoice.html" class="menu-link">Details</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-messages.html" class="menu-link">Messages</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-conversations.html" class="menu-link">Conversations</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Auth</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="auth-comingsoon-v1.html" class="menu-link">Coming Soon v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-comingsoon-v2.html" class="menu-link">Coming Soon v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-cookie-consent.html" class="menu-link">Cookie Consent</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-empty-state.html" class="menu-link">Empty State</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v1.html" class="menu-link">Error Page v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v2.html" class="menu-link">Error Page v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v3.html" class="menu-link">Error Page v3</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-maintenance.html" class="menu-link">Maintenance</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-page-message.html" class="menu-link">Page Message</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-session-timeout.html" class="menu-link">Session Timeout</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v1.html" class="menu-link">Sign In v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v2.html" class="menu-link">Sign In v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signup.html" class="menu-link">Sign Up</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-username.html" class="menu-link">Recovery Username</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-password.html" class="menu-link">Recovery Password</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-lockscreen.html" class="menu-link">Screen Locked</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-person"></span> <span class="menu-text">User</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="user-profile.html" class="menu-link">Profile</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-activities.html" class="menu-link">Activities</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-teams.html" class="menu-link">Teams</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-projects.html" class="menu-link">Projects</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-tasks.html" class="menu-link">Tasks</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-profile-settings.html" class="menu-link">Profile Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-account-settings.html" class="menu-link">Account Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-billing-settings.html" class="menu-link">Billing Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-notification-settings.html" class="menu-link">Notification Settings</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Layouts</span> <span class="badge badge-subtle badge-success">+4</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="layout-blank.html" class="menu-link">Blank Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-nosearch.html" class="menu-link">Header no Search</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-fullwidth.html" class="menu-link">Full Width</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagenavs.html" class="menu-link">Page Navs</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover.html" class="menu-link">Page Cover</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover-img.html" class="menu-link">Cover Image</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar.html" class="menu-link">Page Sidebar</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-fluid.html" class="menu-link">Sidebar Fluid</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-hidden.html" class="menu-link">Sidebar Hidden</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-custom.html" class="menu-link">Custom</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-header -->
-                <li class="menu-header">Interfaces </li><!-- /.menu-header -->
-                <!-- .menu-item -->
-                <li class="menu-item has-active has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Components</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="component-general.html" class="menu-link">General</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-icons.html" class="menu-link">Icons</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-rich-media.html" class="menu-link">Rich Media</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-list-views.html" class="menu-link">List Views</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-sortable-nestable.html" class="menu-link">Sortable & Nestable</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-activity.html" class="menu-link">Activity</a>
-                    </li>
-                    <li class="menu-item has-active">
-                      <a href="component-steps.html" class="menu-link">Steps</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-tasks.html" class="menu-link">Tasks</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-metrics.html" class="menu-link">Metrics</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-pencil"></span> <span class="menu-text">Forms</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="form-basic.html" class="menu-link">Basic Elements</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-autocompletes.html" class="menu-link">Autocompletes</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-pickers.html" class="menu-link">Pickers</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-editors.html" class="menu-link">Editors</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon fas fa-table"></span> <span class="menu-text">Tables</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="table-basic.html" class="menu-link">Basic Table</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="table-datatables.html" class="menu-link">Datatables</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="table-responsive-datatables.html" class="menu-link">Responsive Datatables</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="table-filters-datatables.html" class="menu-link">Filter Columns</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Collections</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Chart.js</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="collection-chartjs-line.html" class="menu-link">Line</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-bar.html" class="menu-link">Bar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-radar-scatter.html" class="menu-link">Radar & Scatter</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-others.html" class="menu-link">Others</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-flot-charts.html" class="menu-link">Flot</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-inline-charts.html" class="menu-link">Inline charts</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-jqvmap.html" class="menu-link">Vector Map</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li><!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-list-rich"></span> <span class="menu-text">Level Menu</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Menu item</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item has-child">
-                          <a href="#" class="menu-link">Child item</a> <!-- grand child menu -->
-                          <ul class="menu">
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                          </ul><!-- /grand child menu -->
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                  </ul><!-- /child menu -->
                 </li><!-- /.menu-item -->
               </ul><!-- /.menu -->
             </nav><!-- /.stacked-menu -->
@@ -668,7 +205,7 @@
                         <!-- .steps -->
                         <div class="steps steps-" role="tablist">
                           <ul>
-                            <li class="step success">
+                            <li class="step success" data-target="#test-l-1">
                               <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-account-login"></i></span> <span class="d-none d-sm-inline">Conta</span></a>
                             </li>
                             <li class="step" data-target="#test-l-2">
@@ -693,13 +230,13 @@
                               <legend>Detalhes da sua conta</legend> <!-- .form-group -->
                               <div class="form-group mb-4">
                                 <div class="form-label-group">
-                                  <input type="text" id="userid" name="userid" class="form-control" value="bent10@mail.com" autocomplete="off" data-parsley-group="fieldset01" required=""> <label for="userid">Nome Completo</label>
+                                  <input type="text" id="nome" class="form-control" value="<?= $_usuario->nome?>" autocomplete="off" data-parsley-group="fieldset01" required="" disabled=""> <label for="nome">Nome Completo</label>
                                 </div>
                               </div><!-- /.form-group -->
                               <!-- .form-group -->
                               <div class="form-group mb-4">
                                 <div class="form-label-group">
-                                  <input type="text" id="username" name="username" class="form-control" value="bent10" autocomplete="off" data-parsley-group="fieldset01" required=""> <label for="username">E-mail</label>
+                                  <input type="text" id="email" class="form-control" value="<?= $_usuario->email?>" autocomplete="off" data-parsley-group="fieldset01" required="" disabled=""> <label for="email">E-mail</label>
                                 </div>
                               </div><!-- /.form-group -->
                               <hr class="mt-5">
@@ -710,21 +247,22 @@
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
                         </form>
-                        <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
+                        <?= form_open("accounts/validade/hash", array("class" => "form", "id" => "formAccountHashEmail")) ?>
                           <!-- .content -->
                           <div id="test-l-2" class="content dstepper-none fade">
                             <!-- fieldset -->
                             <fieldset>
-                              <legend>Informe a Chave de Segurança</legend> <!-- .custom-control -->
+                              <legend>Informe a Chave de Segurança encaminha em seu E-mail</legend> <!-- .custom-control -->
                               <div class="form-group mb-4">
                                 <div class="form-label-group">
-                                  <input type="text" id="super_usuario" class="form-control" name="super_usuario" value="<?= $_usuario->super_usuario?>" data-parsley-group="fieldset02" placeholder="@Super Usuário" required=""> <label for="super_usuario">@Super Usuário</label>
+                                  <input type="hidden" name="email" value="<?= $_usuario->email?>" >
+                                  <input type="text" id="hash_email" class="form-control" name="hash_email" value="<?= $_usuario->hash_email ?>" data-parsley-group="fieldset02" placeholder="Chave de Segurança" required=""> <label for="hash_email">Chave de Segurança</label>
                                 </div>
-                                <div class="invalid-feedback"> Por favor entre com nome de Super Usuário. </div>
+                                <div class="invalid-feedback" id="returnHash">  </div>
                               </div><!-- /.form-group -->
                               <hr class="mt-5">
                               <div class="d-flex">
-                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
+                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="submit" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
                               </div>
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
@@ -858,7 +396,7 @@
     <!-- BEGIN THEME JS -->
     <script src="<?= base_url_assets("assets/javascript/theme.min.js") ?>"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="<?= base_url_assets("assets/javascript/pages/steps-demo.js") ?>"></script> <!-- END PAGE LEVEL JS -->
+    <<!-- script src="<?= base_url_assets("assets/javascript/pages/steps-demo.js") ?>"></script> --> <!-- END PAGE LEVEL JS -->
     <script src="<?= base_url("assets/js/accounts.js") ?>" ></script>
   </body>
 </html>

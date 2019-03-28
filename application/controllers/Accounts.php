@@ -66,6 +66,24 @@ class Accounts extends MY_Controller {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
 		}
 	}
+
+	public function validate_hash_email(){
+		$this->form_validation->set_rules('hash_email', 'Chave de Segurança', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() === TRUE){
+			if (empty($this->accounts->getByHashEmail($this->input->post('hash_email')))){
+				echo json_encode(["code" => "3", "message" => "Chave não foi encontrado"]);
+			} else {
+				if($this->accounts->updateHashEmail("1", $this->input->post('hash_email'))){
+					echo json_encode(["code" => "1", "message" => "Chave validado com sucesso!"]);
+				} else {
+					echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
+				}
+			}
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}
+	}
 	
 	public function validate_continue(){
 		$this->form_validation->set_rules('dt_nascimento', 'Data Nascimento', 'trim|required');
@@ -81,7 +99,7 @@ class Accounts extends MY_Controller {
 			}
 		} else {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
-		}		
+		}
 	}
 	
 	public function validate_forgot(){

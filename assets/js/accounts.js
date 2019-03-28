@@ -80,9 +80,9 @@ class Acconts {
 			}.bind(this));
 		}
 		
-		if (document.getElementById('formAccountContinue')){
-			document.getElementById('formAccountContinue').addEventListener('submit', function(e) {
-				this.validate(e.target, "validate_continue", true, 7000);
+		if (document.getElementById('formAccountHashEmail')){
+			document.getElementById('formAccountHashEmail').addEventListener('submit', function(e) {
+				this.validateContinue(e.target, "accounts/validade/hash");
 				e.preventDefault();
 			}.bind(this));
 		}
@@ -126,6 +126,37 @@ class Acconts {
 					}
 					
 					
+				}
+			},
+			error: function(data) {
+				console.log(data);
+				console.log(data.responseText)
+			}
+		});
+		
+		return false;
+	}
+
+	validateContinue(form, funct){
+		var me = this;
+		$.ajax({
+			type: "POST",
+			url: base_url + funct,
+			data: $(form).serialize(),
+			success: function(data){
+				console.log(data.responseText);
+				console.log(data);
+				this.respJson = new ResponseJson(data);
+				if (this.respJson.alert <> "success"){
+					if($(form).hasId("formAccountHashEmail")){
+						$("#returnHash").text(this.respJson.message);
+						$("#returnHash").addClass("show");
+					}
+				} else {
+					if($(form).hasId("formAccountHashEmail")){
+						$("#returnHash").text("");
+						$("#returnHash").removeClass("show");
+					}
 				}
 			},
 			error: function(data) {

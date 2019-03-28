@@ -56,6 +56,9 @@ $route['translate_uri_dashes'] = FALSE;
 $route['accounts'] = 'Accounts/accounts';
 $route['accounts/continue'] = 'Accounts/continuar';
 $route['accounts/register'] = 'Accounts/register';
+$route['accounts/register'] = 'Accounts/register';
+$route['accounts/validade/hash'] = 'Accounts/validate_hash_email';
+
 $route['forgot'  ] = 'Accounts/forgot';
 $route['forgot/(:any)'  ] = 'Accounts/forgot/$1';
 $route['logout'  ] = 'Accounts/logout';

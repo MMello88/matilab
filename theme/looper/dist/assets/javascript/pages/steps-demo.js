@@ -35,7 +35,7 @@ function () {
         var isValid = formInstance.isValid({
           group: group
         }); // normalize states
-
+        console.log(group);
         $groupStep.removeClass('success error'); // give step item a validate state
 
         if (isValid) {

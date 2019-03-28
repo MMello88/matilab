@@ -25,6 +25,19 @@ class Accounts_model extends CI_Model {
     	}
     }
 
+    public function updateHashEmail($emailValido, $hashEmail = ""){
+        $data = [
+            'hash_email' => $hashEmail,
+            'email_valid' => $emailValido
+        ];
+
+        $condicao = [
+            'email' => $this->session->userdata("account")["Email"],
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);
+    }
+
     public function updateContinuacao(){
         $data = [
             'dt_nascimento' => $this->input->post('dt_nascimento'),
@@ -43,6 +56,12 @@ class Accounts_model extends CI_Model {
 
     public function getByEmail($email) {
         $query = $this->db->get_where('usuario', array('email' => $email));
+        $result = $query->result_object();
+        return empty($result) ? "" : $result[0];
+    }
+
+    public function getByHashEmail($hash) {
+        $query = $this->db->get_where('usuario', array('hash_email' => $hash));
         $result = $query->result_object();
         return empty($result) ? "" : $result[0];
     }

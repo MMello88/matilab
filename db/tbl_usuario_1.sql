@@ -19,6 +19,11 @@ CREATE TABLE `tbl_usuario`(
   CONSTRAINT Uk_Code_Cookie UNIQUE (code_cookie_hash)
 );
 
+ALTER TABLE `miste872_matilab`.`tbl_usuario`   
+  ADD COLUMN `hash_email` VARCHAR(250) NULL AFTER `code_cookie_hash`,
+  ADD COLUMN `email_valid` CHAR(1) NULL AFTER `hash_email`;
+
+
 CREATE TABLE IF NOT EXISTS `tbl_ci_sessions` (
         `id` VARCHAR(128) NOT NULL,
         `ip_address` VARCHAR(45) NOT NULL,
