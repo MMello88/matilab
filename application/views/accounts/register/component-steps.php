@@ -396,7 +396,7 @@
     <!-- BEGIN THEME JS -->
     <script src="<?= base_url_assets("assets/javascript/theme.min.js") ?>"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <<!-- script src="<?= base_url_assets("assets/javascript/pages/steps-demo.js") ?>"></script> --> <!-- END PAGE LEVEL JS -->
-    <script src="<?= base_url("assets/js/accounts.js") ?>" ></script>
+    <script src="<?= base_url_assets("assets/javascript/pages/steps-demo.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
+   <!-- <script src="<?= base_url("assets/js/accounts.js") ?>" ></script> -->
   </body>
 </html>

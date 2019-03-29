@@ -35,7 +35,6 @@ function () {
         var isValid = formInstance.isValid({
           group: group
         }); // normalize states
-        console.log(group);
         $groupStep.removeClass('success error'); // give step item a validate state
 
         if (isValid) {
@@ -43,7 +42,6 @@ function () {
 
           if ($trigger.hasClass('submit')) {
             $('#submitfeedback').toast('show');
-            console.log($('#stepper-form').serializeArray());
           } else {
             stepperDemo.next();
           }
