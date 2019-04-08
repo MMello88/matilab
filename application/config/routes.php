@@ -58,6 +58,8 @@ $route['accounts/continue'] = 'Accounts/continuar';
 $route['accounts/register'] = 'Accounts/register';
 $route['accounts/register'] = 'Accounts/register';
 $route['accounts/validade/hash'] = 'Accounts/validate_hash_email';
+$route['accounts/change/name'] = 'Accounts/change_name';
+$route['accounts/change/perfil'] = 'Accounts/change_perfil';
 
 $route['forgot'  ] = 'Accounts/forgot';
 $route['forgot/(:any)'  ] = 'Accounts/forgot/$1';

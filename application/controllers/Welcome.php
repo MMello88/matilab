@@ -25,11 +25,13 @@ class Welcome extends MY_Controller {
 			$this->data["email"] = $this->account->Email;
 			if ($this->account->CadastroCompleto == "0"){
 				redirect("accounts/continue");
+			} else {
+				$this->load->view('dashboard/main/layout-main', $this->data);	
 			}
+		} else {
+			$this->load->view('welcome_message', $this->data);
 		}
-
-		$this->load->view('welcome_message', $this->data);
-		
 	}
 
 }
+

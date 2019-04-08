@@ -41,6 +41,7 @@
     <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/fontawesome/css/all.css") ?>"><!-- END PLUGINS STYLES -->
+    <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/toastr/toastr.min.css") ?>"><!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme.min.css") ?>" data-skin="default">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme-dark.min.css") ?>" data-skin="dark">
@@ -91,7 +92,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item unread">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces15.jpg" alt="">
+                          <img src="<?= base_url_assets("assets/images/avatars/uifaces15.jpg") ?>" alt="">
                         </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Tornou-se membro do MatiLab </p><span class="date"><?= date("d/m/Y",strtotime($_usuario->dt_cadastro)) ?></span>
@@ -112,7 +113,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item unread">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/team1.jpg" alt="">
+                          <img src="<?= base_url_assets("assets/images/avatars/team1.jpg") ?>" alt="">
                         </div>
                         <div class="dropdown-item-body">
                           <p class="subject"> Seja Bem-Vindo </p>
@@ -205,11 +206,11 @@
                         <!-- .steps -->
                         <div class="steps steps-" role="tablist">
                           <ul>
-                            <li class="step success" data-target="#test-l-1">
-                              <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-account-login"></i></span> <span class="d-none d-sm-inline">Conta</span></a>
+                            <li class="step <?= $_usuario->email_valid == '1' ? 'success' : '' ?>" data-target="#test-l-1">
+                              <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-envelope-open"></i></span> <span class="d-none d-sm-inline">Validar E-mail</span></a>
                             </li>
                             <li class="step" data-target="#test-l-2">
-                              <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-envelope-open"></i></span> <span class="d-none d-sm-inline">Checar E-mail</span></a>
+                              <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-account-login"></i></span> <span class="d-none d-sm-inline">Dados da Conta</span></a>
                             </li>
                             <li class="step" data-target="#test-l-3">
                               <a href="#" class="step-trigger" tabindex="-1"><span class="step-indicator step-indicator-icon"><i class="oi oi-person"></i></span> <span class="d-none d-sm-inline">Perfil</span></a>
@@ -222,52 +223,57 @@
                       </div><!-- /.card-header -->
                       <!-- .card-body -->
                       <div class="card-body">
-                        <form id="stepper-form" name="stepperForm" class="p-lg-4 p-sm-3 p-0">
-                          <!-- .content -->
-                          <div id="test-l-1" class="content dstepper-none fade">
-                            <!-- fieldset -->
-                            <fieldset>
-                              <legend>Detalhes da sua conta</legend> <!-- .form-group -->
-                              <div class="form-group mb-4">
-                                <div class="form-label-group">
-                                  <input type="text" id="nome" class="form-control" value="<?= $_usuario->nome?>" autocomplete="off" data-parsley-group="fieldset01" required="" disabled=""> <label for="nome">Nome Completo</label>
-                                </div>
-                              </div><!-- /.form-group -->
-                              <!-- .form-group -->
-                              <div class="form-group mb-4">
-                                <div class="form-label-group">
-                                  <input type="text" id="email" class="form-control" value="<?= $_usuario->email?>" autocomplete="off" data-parsley-group="fieldset01" required="" disabled=""> <label for="email">E-mail</label>
-                                </div>
-                              </div><!-- /.form-group -->
-                              <hr class="mt-5">
-                              <!-- .d-flex -->
-                              <div class="d-flex">
-                                <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset01">Next step</button>
-                              </div><!-- /.d-flex -->
-                            </fieldset><!-- /fieldset -->
-                          </div><!-- /.content -->
-                        </form>
                         <?= form_open("accounts/validade/hash", array("class" => "form", "id" => "formAccountHashEmail")) ?>
                           <!-- .content -->
-                          <div id="test-l-2" class="content dstepper-none fade">
+                          <div id="test-l-1" class="content dstepper-none fade">
                             <!-- fieldset -->
                             <fieldset>
                               <legend>Informe a Chave de Segurança encaminha em seu E-mail</legend> <!-- .custom-control -->
                               <div class="form-group mb-4">
                                 <div class="form-label-group">
-                                  <input type="hidden" name="email" value="<?= $_usuario->email?>" >
-                                  <input type="text" id="hash_email" class="form-control" name="hash_email" value="<?= $_usuario->hash_email ?>" data-parsley-group="fieldset02" placeholder="Chave de Segurança" required=""> <label for="hash_email">Chave de Segurança</label>
+                                  <input type="hidden" name="email" value="<?= $_usuario->email ?>" form="formAccountHashEmail">
+                                  <input type="text" id="hash_email" class="form-control" name="hash_email" value="" data-parsley-group="fieldset02" placeholder="Chave de Segurança" form="formAccountHashEmail" required=""> <label for="hash_email">Chave de Segurança</label>
                                 </div>
-                                <div class="invalid-feedback" id="returnHash">  </div>
                               </div><!-- /.form-group -->
                               <hr class="mt-5">
                               <div class="d-flex">
-                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="submit" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
+                                <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset03">Next step</button>
                               </div>
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
-                        </form>
-                        <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
+                        <?= form_close() ?>
+                        <?= form_open("accounts/change/name", array("class" => "p-lg-4 p-sm-3 p-0", "id" => "stepper-form", "name" => "stepperForm")) ?>
+                          <!-- .content -->
+                          <div id="test-l-2" class="content dstepper-none fade">
+                            <!-- fieldset -->
+                            <fieldset>
+                              <legend>Detalhes da sua conta</legend> <!-- .form-group -->
+                              <div class="form-group mb-4">
+                                <div class="form-label-group">
+                                  <input type="text" id="inputNome" name="nome" class="form-control" value="<?= $_usuario->nome ?>" form="stepper-form" autocomplete="off" data-parsley-group="fieldset01" required=""> <label for="inputNome">Nome Completo</label>
+                                </div>
+                              </div><!-- /.form-group -->
+                              <!-- .form-group -->
+                              <div class="form-group mb-4">
+                                <div class="form-label-group">
+                                  <input type="email" id="email" name="email" class="form-control" value="<?= $_usuario->email ?>" form="stepper-form" autocomplete="off" data-parsley-group="fieldset01" > <label for="email">E-mail</label>
+                                </div>
+                              </div><!-- /.form-group -->
+                              <div class="form-group mb-4">
+                                <div class="form-label-group">
+                                  <div class="invalid-feedback show"> Por favor entre com nome de Super Usuário. </div>
+                                </div>
+                              </div><!-- /.form-group -->
+                              <hr class="mt-5">
+                              <!-- .d-flex -->
+                              <div class="d-flex">
+                                <button type="button" class="prev btn btn-secondary">Previous</button>
+                                <button type="button" class="next btn btn-primary ml-auto" form="stepper-form" data-validate="fieldset01">Next step</button>
+                              </div><!-- /.d-flex -->
+                            </fieldset><!-- /fieldset -->
+                          </div><!-- /.content -->
+                        <?= form_close() ?>
+                        <?= form_open("accounts/change/perfil", array("class" => "form", "id" => "formAccountContinue")) ?>
                           <!-- .content -->
                           <div id="test-l-3" class="content dstepper-none fade">
                             <!-- fieldset -->
@@ -277,7 +283,7 @@
                                 <!-- grid column -->
                                 <div class="col-md-6 mb-4">
                                   <div class="form-label-group">
-                                    <input type="date" id="dt_nascimento" class="form-control" name="dt_nascimento" value="<?= date("Y-m-d",strtotime($_usuario->dt_nascimento)) ?>" data-parsley-group="fieldset02" required=""> <label for="dt_nascimento">Data de Nascimento</label>
+                                    <input type="date" id="dt_nascimento" class="form-control" name="dt_nascimento" value="<?= empty($_usuario->dt_nascimento) ? '' : date("Y-m-d",strtotime($_usuario->dt_nascimento)) ?>" data-parsley-group="fieldset02" required=""> 
                                   </div>
                                   <div class="invalid-feedback"> Data inválida. </div>
                                 </div><!-- /grid column -->
@@ -312,7 +318,7 @@
                               </div>
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
-                        </form>
+                        <?= form_close() ?>
                         <?= form_open("validate_continuar", array("class" => "form", "id" => "formAccountContinue")) ?>
                           <!-- .content -->
                           <div id="test-l-4" class="content dstepper-none fade">
@@ -340,7 +346,7 @@
                               </div>
                             </fieldset><!-- /fieldset -->
                           </div><!-- /.content -->
-                        </form><!-- /form -->
+                        <?= form_close() ?><!-- /form -->
                       </div><!-- /.card-body -->
                     </div><!-- /.card -->
                   </div><!-- /.bs-stepper -->
@@ -393,10 +399,19 @@
     <script src="<?= base_url_assets("assets/vendor/text-mask/vanillaTextMask.js") ?>"></script>
     <script src="<?= base_url_assets("assets/vendor/text-mask/addons/textMaskAddons.js") ?>"></script>
     <script src="<?= base_url_assets("assets/vendor/bs-stepper/js/bs-stepper.min.js") ?>"></script> <!-- END PLUGINS JS -->
+    <script src="<?= base_url_assets("assets/vendor/toastr/toastr.min.js") ?>"></script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
     <script src="<?= base_url_assets("assets/javascript/theme.min.js") ?>"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="<?= base_url_assets("assets/javascript/pages/steps-demo.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
-   <!-- <script src="<?= base_url("assets/js/accounts.js") ?>" ></script> -->
+    <script src="<?= base_url("assets/js/toastr-steps.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
+    <script src="<?= base_url("assets/js/steps-demo.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
+    <?php if($_usuario->email_valid == '1') : ?>
+    <script>
+      $(document).on('theme:init', function () {
+        stepperDemo.next();
+      });
+    </script>
+    <?php endif; ?>
+    <script src="<?= base_url("assets/js/accounts.js") ?>" ></script>
   </body>
 </html>

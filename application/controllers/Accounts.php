@@ -67,15 +67,15 @@ class Accounts extends MY_Controller {
 		}
 	}
 
-	public function validate_hash_email(){
-		$this->form_validation->set_rules('hash_email', 'Chave de Segurança', 'trim|required');
+	public function change_name(){
+		$this->form_validation->set_rules('nome', 'Nome Completo', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		if ($this->form_validation->run() === TRUE){
-			if (empty($this->accounts->getByHashEmail($this->input->post('hash_email')))){
-				echo json_encode(["code" => "3", "message" => "Chave não foi encontrado"]);
+			if (empty($this->accounts->getByEmail($this->input->post('email')))){
+				echo json_encode(["code" => "3", "message" => "Cadastro não encontrado!"]);
 			} else {
-				if($this->accounts->updateHashEmail("1", $this->input->post('hash_email'))){
-					echo json_encode(["code" => "1", "message" => "Chave validado com sucesso!"]);
+				if($this->accounts->updateNome($this->input->post('nome'))){
+					echo json_encode(["code" => "1", "message" => "Alteração realizada com sucesso!"]);
 				} else {
 					echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 				}
@@ -84,8 +84,31 @@ class Accounts extends MY_Controller {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
 		}
 	}
+
+	public function validate_hash_email(){
+		$this->form_validation->set_rules('hash_email', 'Chave de Segurança', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() === TRUE){
+			$_usuario = $this->accounts->getByEmail($this->input->post('email'));
+			if (empty($_usuario)){
+				echo json_encode(["code" => "3", "message" => "Chave não foi encontrado"]);
+			} else {
+				if($_usuario->hash_email === $this->input->post("hash_email")){
+					if($this->accounts->updateHashEmail("1")){
+						echo json_encode(["code" => "1", "message" => "Chave de Segurança validado com sucesso!"]);
+					} else {
+						echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
+					}
+				} else {
+					echo json_encode(["code" => "2", "message" => "Chave de Segurança inválida!"]);
+				}
+			}
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}
+	}
 	
-	public function validate_continue(){
+	public function change_perfil(){
 		$this->form_validation->set_rules('dt_nascimento', 'Data Nascimento', 'trim|required');
 		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
 		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
@@ -93,7 +116,7 @@ class Accounts extends MY_Controller {
 		if ($this->form_validation->run() === TRUE){
 			if($this->accounts->updateContinuacao()){
 				$this->session->set_userdata("account",["Email" => $this->account->Email, "CadastroCompleto" => "1", "cookie" => False]);
-				echo json_encode(["code" => "1", "message" => "Muito obrigado. Seja bem vindo ao Matilab. Vai se surpreender com poder de uma agenda! <br> Você será redirecionado para pagina princial..."]);
+				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
 			} else {
 				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 			}
@@ -210,8 +233,7 @@ class Accounts extends MY_Controller {
 				$this->load->view('accounts/includes/footer', $this->data);*/
 				$this->load->view('accounts/register/component-steps', $this->data);
 				
-			}
+			} else redirect();
 		} else redirect();
 	}
-
 }

@@ -33,6 +33,7 @@ class MY_Controller extends CI_Controller {
 	public function isLogged(){
 		if ($this->session->userdata("account")){
 			$this->account = (object)$this->session->userdata("account");
+			$this->data["_usuario"] = $this->accounts->getByEmail($this->account->Email);
 			return true;
 		}
 		return false;
