@@ -54,4 +54,12 @@ class MY_Controller extends CI_Controller {
 		}
 		return false;
 	}
+
+	public function loadViewLogged($nome){
+		$this->load->view('comuns/logado/header', $this->data);
+		$this->load->view('comuns/logado/navbar', $this->data);
+		$this->load->view('comuns/logado/menu', $this->data);
+		$this->load->view($nome, $this->data);
+		$this->load->view('comuns/logado/footer', $this->data);
+	}
 }

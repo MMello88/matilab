@@ -26,7 +26,7 @@ class Welcome extends MY_Controller {
 			if ($this->account->CadastroCompleto == "0"){
 				redirect("accounts/continue");
 			} else {
-				$this->load->view('dashboard/main/layout-main', $this->data);	
+				$this->loadViewLogged('dashboard/main/layout-main');	
 			}
 		} else {
 			$this->load->view('welcome_message', $this->data);

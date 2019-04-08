@@ -58,7 +58,7 @@ class Accounts extends MY_Controller {
 			$return_id = $this->accounts->inserirUsuario();
 			if(is_integer($return_id)){
 				$this->session->set_userdata("account",["Email" => $this->input->post('email'), "CadastroCompleto" => "0", "cookie" => False]);
-				echo json_encode(["code" => "1", "message" => "Cadastro realizado com sucesso!"]);
+				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
 			} else {
 				echo $return_id;
 			}
@@ -107,6 +107,21 @@ class Accounts extends MY_Controller {
 			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
 		}
 	}
+
+	public function validate_cadastro(){
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() === TRUE){
+			$_usuario = $this->accounts->getByEmail($this->input->post('email'));
+			if ($_usuario->ativo == '1' && $_usuario->ativo == '1' && $_usuario->cadastro_completo == '1' && 
+				$_usuario->super_usuario !== '' && $_usuario->hash_email !== '' && $_usuario->email_valid == '1'){
+				echo json_encode(["code" => "1", "message" => "Cadastro concluido com sucesso! <br/> Seja bem Vindo ao MatiLab."]);
+			} else {
+				echo json_encode(["code" => "4", "message" => "Seu cadastro precisa ser concluído para dar continuidade."]);
+			}
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}
+	}
 	
 	public function change_perfil(){
 		$this->form_validation->set_rules('dt_nascimento', 'Data Nascimento', 'trim|required');
@@ -128,7 +143,6 @@ class Accounts extends MY_Controller {
 	public function validate_forgot(){
 		if (!$this->input->post('hash')) {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-
 			if ($this->form_validation->run() === TRUE) {
 				$_usuario = $this->accounts->getByEmail($this->input->post('email'));
 				if(!empty($_usuario)){
@@ -168,18 +182,12 @@ class Accounts extends MY_Controller {
 	
 	public function accounts()
 	{
-		/*$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/accounts/accounts');
-		$this->load->view('accounts/includes/footer', $this->data);*/
 		$this->load->view('accounts/accounts/auth-signin-v1', $this->data);
 	}
 
 	public function logout()
 	{
 		$this->logout_account();
-		/*$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/logout/logout_success');
-		$this->load->view('accounts/includes/footer', $this->data);*/
 		$this->load->view('accounts/logout/auth-signin-v2', $this->data);
 	}
 
@@ -201,16 +209,10 @@ class Accounts extends MY_Controller {
 		
 		$this->data['hash'] = $hash;
 		$this->load->view('accounts/forgot/auth-recovery-password', $this->data);
-		/*$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/forgot/forgot', $this->data);
-		$this->load->view('accounts/includes/footer', $this->data);*/
 	}
 
 	public function register()
 	{
-		/*$this->load->view('accounts/includes/header');
-		$this->load->view('accounts/register/register');
-		$this->load->view('accounts/includes/footer', $this->data);*/
 		$this->load->view('accounts/register/auth-signup', $this->data);
 		
 	}
@@ -228,10 +230,7 @@ class Accounts extends MY_Controller {
 			if ($this->account->CadastroCompleto == "0"){
 				$_usuario = $this->accounts->getByEmail($this->account->Email);
 				$this->data['_usuario'] = $_usuario;
-				/*$this->load->view('accounts/includes/header');
-				$this->load->view('accounts/register/continuar', $this->data);
-				$this->load->view('accounts/includes/footer', $this->data);*/
-				$this->load->view('accounts/register/component-steps', $this->data);
+				$this->loadViewLogged('accounts/register/continuar');
 				
 			} else redirect();
 		} else redirect();

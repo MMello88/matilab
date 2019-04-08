@@ -46,10 +46,8 @@ function () {
             $groupStep.addClass('success');
             
             if ($trigger.hasClass('submit')) {
-              $('#submitfeedback').toast('show');
-              console.log($('#stepper-form').serializeArray());
+              window.location = base_url;
             } else {
-              console.log("entorou")
               stepperDemo.next();
             }
           }
@@ -126,7 +124,6 @@ function () {
 
       $('.submit').on('click', function () {
         self.validateBy(this);
-        return false;
       });
     }
   }, {
