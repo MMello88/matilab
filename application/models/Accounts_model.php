@@ -31,7 +31,7 @@ class Accounts_model extends CI_Model {
         ];
 
         $condicao = [
-            'email' => $this->session->userdata("account")["Email"],
+            'email' => $this->session->userdata("session_account")["email"],
         ];
 
         return $this->db->update('usuario', $data, $condicao);
@@ -44,7 +44,7 @@ class Accounts_model extends CI_Model {
         ];
 
         $condicao = [
-            'email' => $this->session->userdata("account")["Email"],
+            'email' => $this->session->userdata("session_account")["email"],
         ];
 
         return $this->db->update('usuario', $data, $condicao);
@@ -61,7 +61,7 @@ class Accounts_model extends CI_Model {
 
 
         $condicao = [
-            'email' => $this->session->userdata("account")["Email"],
+            'email' => $this->session->userdata("session_account")["email"],
         ];
 
         return $this->db->update('usuario', $data, $condicao);

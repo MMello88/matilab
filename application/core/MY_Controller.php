@@ -10,10 +10,11 @@ class MY_Controller extends CI_Controller {
 	 * 
 	 * Sem vai exisit em seu conteúdo os valores do usuário
 	 *
-	 * Object of account ["Logado", "Email", "CadastroCompleto"]
+	 * Object of account ["Logado", "Email"]
 	 *
 	 */
 	public $account;
+	public $session_account;
 
 	public function __construct() {
 		
@@ -31,9 +32,10 @@ class MY_Controller extends CI_Controller {
 	}
 
 	public function isLogged(){
-		if ($this->session->userdata("account")){
-			$this->account = (object)$this->session->userdata("account");
-			$this->data["_usuario"] = $this->accounts->getByEmail($this->account->Email);
+		if ($this->session->userdata("session_account")){
+			$this->session_account = (object)$this->session->userdata("session_account");
+			$this->account = $this->accounts->getByEmail($this->session_account->email);
+			$this->data["_usuario"] = $this->account;
 			return true;
 		}
 		return false;
@@ -47,8 +49,8 @@ class MY_Controller extends CI_Controller {
 			if (empty($usuario)){
 				return false;
 			} else {
-				$this->session->set_userdata("account",["Email" => $usuario->email, "CadastroCompleto" => $usuario->cadastro_completo, "cookie" => True]);
-				$this->account = (object)$this->session->userdata("account");
+				$this->session->set_userdata("account",["email" => $usuario->email, "cookie" => True]);
+				$this->session_account = (object)$this->session->userdata("session_account");
 				return true;
 			}
 		}

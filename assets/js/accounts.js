@@ -86,11 +86,14 @@ class Acconts {
 		$.ajax({
 			url: base_url + "Accounts/validate_session_account",
 			success: function(data){
+				console.log('asdfads');
+				console.log(data);
 				this.respJson = new ResponseJson(data);
 				if (this.respJson.code == '1' && this.respJson.message == 'true')
 					window.location = base_url + "Welcome";
 			},
 			error: function(data) {
+				console.log(data);
 			}
 		});
 	}
@@ -107,8 +110,8 @@ class Acconts {
 			url: base_url + "Accounts/" + funct,
 			data: $(form).serialize(),
 			success: function(data){
-				console.log(data.responseText);
 				console.log(data);
+				console.log(data.responseText);
 				this.respJson = new ResponseJson(data);
 				$(form).prepend("<div class='alert "+this.respJson.alert+" alert-dismissible fade show' id='code'><button type='button' class='close' data-dismiss='alert'>X</button> <strong>"+this.respJson.alertMsg+"</strong> "+this.respJson.message+"</div>");
 				if (redirect){

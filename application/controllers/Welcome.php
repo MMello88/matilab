@@ -22,10 +22,10 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
 		if ($this->logged){
-			$this->data["email"] = $this->account->Email;
-			if ($this->account->CadastroCompleto == "0"){
+			if ($this->account->cadastro_completo == "0"){
 				redirect("accounts/continue");
 			} else {
+
 				$this->loadViewLogged('dashboard/main/layout-main');	
 			}
 		} else {
