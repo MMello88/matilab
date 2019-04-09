@@ -165,7 +165,7 @@
                                 <!-- .custom-control -->
                                 <div class="custom-control custom-checkbox">
                                   <input type="hidden" name="email" value="<?= $_usuario->email ?>" form="formAccountTerms">
-                                  <input type="checkbox" id="agreement" name="agreement" class="custom-control-input" data-parsley-group="agreement" required=""> <label class="custom-control-label" for="agreement">Agree to terms and conditions</label>
+                                  <input type="checkbox" id="agreement" name="agreement" class="custom-control-input" data-parsley-group="agreement" required="True"> <label class="custom-control-label" for="agreement">Agree to terms and conditions</label>
                                 </div><!-- /.custom-control -->
                               </div><!-- /.form-group -->
                               <hr class="mt-5">

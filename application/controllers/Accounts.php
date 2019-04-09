@@ -110,10 +110,11 @@ class Accounts extends MY_Controller {
 
 	public function validate_cadastro(){
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('agreement', 'Acordo de Termos', 'trim|required');
 		if ($this->form_validation->run() === TRUE){
 			$_usuario = $this->accounts->getByEmail($this->input->post('email'));
-			if ($_usuario->ativo == '1' && $_usuario->ativo == '1' && $_usuario->cadastro_completo == '1' && 
-				$_usuario->super_usuario !== '' && $_usuario->hash_email !== '' && $_usuario->email_valid == '1'){
+			if ($_usuario->ativo == '1' && $_usuario->cadastro_completo == '1' && $_usuario->super_usuario !== ''
+				&& $_usuario->hash_email == '' && $_usuario->email_valid == '1'){
 				echo json_encode(["code" => "1", "message" => "Cadastro concluido com sucesso! <br/> Seja bem Vindo ao MatiLab."]);
 			} else {
 				echo json_encode(["code" => "4", "message" => "Seu cadastro precisa ser concluído para dar continuidade."]);

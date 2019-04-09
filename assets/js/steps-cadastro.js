@@ -103,6 +103,7 @@ function () {
       var self = this; // validate on next buttons
 
       $('.next').on('click', function () {
+        console.log("next");
         self.validateBy(this);
       }); // prev buttons
 
@@ -123,6 +124,7 @@ function () {
       }); // submit button
 
       $('.submit').on('click', function () {
+        console.log("submit");
         self.validateBy(this);
       });
     }

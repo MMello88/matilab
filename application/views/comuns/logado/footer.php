@@ -16,7 +16,7 @@
     <script src="<?= base_url_assets("assets/javascript/theme.min.js") ?>"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="<?= base_url("assets/js/toastr-steps.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
-    <script src="<?= base_url("assets/js/steps-demo.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
+    <script src="<?= base_url("assets/js/steps-cadastro.js") ?>"></script>  <!-- END PAGE LEVEL JS -->
     <?php if($_usuario->email_valid == '1') : ?>
     <script>
       $(document).on('theme:init', function () {
