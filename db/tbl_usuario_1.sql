@@ -23,6 +23,8 @@ ALTER TABLE `miste872_matilab`.`tbl_usuario`
   ADD COLUMN `hash_email` VARCHAR(250) NULL AFTER `code_cookie_hash`,
   ADD COLUMN `email_valid` CHAR(1) NULL AFTER `hash_email`;
 
+ALTER TABLE `miste872_matilab`.`tbl_usuario`   
+  ADD COLUMN `ver_cad_usuario` CHAR(1) NULL AFTER `email_valid`;
 
 CREATE TABLE IF NOT EXISTS `tbl_ci_sessions` (
         `id` VARCHAR(128) NOT NULL,

@@ -25,8 +25,11 @@ class Welcome extends MY_Controller {
 			if ($this->account->cadastro_completo == "0"){
 				redirect("accounts/continue");
 			} else {
-
-				$this->loadViewLogged('dashboard/main/layout-main');	
+				if ($this->account->ver_cad_usuario == "1"){
+					redirect("accounts/view/perfil");
+				} else {
+					$this->loadViewLogged('dashboard/main/layout-main');
+				}
 			}
 		} else {
 			$this->load->view('welcome_message', $this->data);

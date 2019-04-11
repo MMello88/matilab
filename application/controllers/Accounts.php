@@ -233,4 +233,46 @@ class Accounts extends MY_Controller {
 			} else redirect();
 		} else redirect();
 	}
+
+	public function perfil(){
+		if ($this->logged){
+			$this->data["active"] = "perfil";
+			$this->loadViewLogged('dashboard/account/perfil');
+		} else redirect();
+	}
+
+	public function atividades(){
+		if ($this->logged){
+			$this->data["active"] = "atividades";
+			$this->loadViewLogged('dashboard/account/activities');
+		} else redirect();
+	}
+
+	public function times(){
+		if ($this->logged){
+			$this->data["active"] = "times";
+			$this->loadViewLogged('dashboard/account/teams');
+		} else redirect();	
+	}
+
+	public function projetos(){
+		if ($this->logged){
+			$this->data["active"] = "projetos";
+			$this->loadViewLogged('dashboard/account/projects');
+		} else redirect();	
+	}
+
+	public function tarefas(){
+		if ($this->logged){
+			$this->data["active"] = "tarefas";
+			$this->loadViewLogged('dashboard/account/tasks');
+		} else redirect();	
+	}
+
+	public function configuracoes(){
+		if ($this->logged){
+			$this->data["active"] = "configuracoes";
+			$this->loadViewLogged('dashboard/account/settings');
+		} else redirect();	
+	}
 }
