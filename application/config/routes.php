@@ -61,12 +61,13 @@ $route['accounts/validade/hash'] = 'Accounts/validate_hash_email';
 $route['accounts/validade/terms'] = 'Accounts/validate_cadastro';
 $route['accounts/change/name'] = 'Accounts/change_name';
 $route['accounts/change/perfil'] = 'Accounts/change_perfil';
-$route['accounts/view/perfil'] = 'Accounts/perfil';
+$route['accounts/view/overview'] = 'Accounts/overview';
 $route['accounts/view/activities'] = 'Accounts/atividades';
 $route['accounts/view/teams'] = 'Accounts/times';
 $route['accounts/view/projects'] = 'Accounts/projetos';
 $route['accounts/view/tasks'] = 'Accounts/tarefas';
 $route['accounts/view/settings'] = 'Accounts/configuracoes';
+$route['accounts/view/settings/(:any)'] = 'Accounts/configuracoes/$1';
 
 $route['forgot'  ] = 'Accounts/forgot';
 $route['forgot/(:any)'  ] = 'Accounts/forgot/$1';

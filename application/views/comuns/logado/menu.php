@@ -25,6 +25,10 @@
                 <li class="menu-item">
                   <a href="<?= base_url() ?>" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
                 </li><!-- /.menu-item -->
+                <!-- .menu-item -->
+                <li class="menu-item">
+                  <a href="<?= base_url("accounts/view/overview") ?>" class="menu-link"><span class="menu-icon oi oi-person"></span> <span class="menu-text">Usuário</span></a>
+                </li><!-- /.menu-item -->
               </ul><!-- /.menu -->
             </nav><!-- /.stacked-menu -->
           </div><!-- /.aside-menu -->

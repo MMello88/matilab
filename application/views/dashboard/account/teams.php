@@ -12,7 +12,7 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                      <a href="user-profile.html"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Overview</a>
+                      <a href="<?= base_url("accounts/view/overview") ?>"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Overview</a>
                     </li>
                   </ol>
                 </nav>

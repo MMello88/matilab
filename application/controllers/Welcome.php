@@ -26,7 +26,7 @@ class Welcome extends MY_Controller {
 				redirect("accounts/continue");
 			} else {
 				if ($this->account->ver_cad_usuario == "1"){
-					redirect("accounts/view/perfil");
+					redirect("accounts/view/overview");
 				} else {
 					$this->loadViewLogged('dashboard/main/layout-main');
 				}

@@ -234,45 +234,47 @@ class Accounts extends MY_Controller {
 		} else redirect();
 	}
 
-	public function perfil(){
+	public function overview(){
 		if ($this->logged){
-			$this->data["active"] = "perfil";
-			$this->loadViewLogged('dashboard/account/perfil');
+			$this->data["css_menu_user"] = "overview";
+			$this->loadViewLogged('dashboard/account/overview');
 		} else redirect();
 	}
 
 	public function atividades(){
 		if ($this->logged){
-			$this->data["active"] = "atividades";
+			$this->data["css_menu_user"] = "atividades";
 			$this->loadViewLogged('dashboard/account/activities');
 		} else redirect();
 	}
 
 	public function times(){
 		if ($this->logged){
-			$this->data["active"] = "times";
+			$this->data["css_menu_user"] = "times";
 			$this->loadViewLogged('dashboard/account/teams');
 		} else redirect();	
 	}
 
 	public function projetos(){
 		if ($this->logged){
-			$this->data["active"] = "projetos";
+			$this->data["css_menu_user"] = "projetos";
 			$this->loadViewLogged('dashboard/account/projects');
 		} else redirect();	
 	}
 
 	public function tarefas(){
 		if ($this->logged){
-			$this->data["active"] = "tarefas";
+			$this->data["css_menu_user"] = "tarefas";
 			$this->loadViewLogged('dashboard/account/tasks');
 		} else redirect();	
 	}
 
-	public function configuracoes(){
+	public function configuracoes($page = "settings"){
 		if ($this->logged){
-			$this->data["active"] = "configuracoes";
-			$this->loadViewLogged('dashboard/account/settings');
+			$this->data["css_menu_user"] = "configuracoes";
+			$this->data["css_view_user"] = "$page";
+			$this->data["page_user_view"] = "$page";
+			$this->loadViewLogged("dashboard/account/setting");
 		} else redirect();	
 	}
 }
