@@ -58,10 +58,10 @@ class MY_Controller extends CI_Controller {
 	}
 
 	public function loadViewLogged($nome){
-		$this->load->view('comuns/logado/header', $this->data);
-		$this->load->view('comuns/logado/navbar', $this->data);
-		$this->load->view('comuns/logado/menu', $this->data);
+		$this->load->view('dashboard/comuns/header', $this->data);
+		$this->load->view('dashboard/comuns/navbar', $this->data);
+		$this->load->view('dashboard/comuns/menu', $this->data);
 		$this->load->view($nome, $this->data);
-		$this->load->view('comuns/logado/footer', $this->data);
+		$this->load->view('dashboard/comuns/footer', $this->data);
 	}
 }
