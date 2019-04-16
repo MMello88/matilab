@@ -157,10 +157,10 @@
                 <!-- .nav -->
                 <div class="nav nav-center nav-tabs">
                   <a class="nav-link <?= $css_menu_user == "overview" ? "active" : "" ?>" href="<?= base_url("accounts/view/overview") ?>">Overview</a> 
-                  <a class="nav-link <?= $css_menu_user == "atividades" ? "active" : "" ?>" href="<?= base_url("accounts/view/activities") ?>">Activities</a> 
-                  <a class="nav-link <?= $css_menu_user == "times" ? "active" : "" ?>" href="<?= base_url("accounts/view/teams") ?>">Teams</a> 
-                  <a class="nav-link <?= $css_menu_user == "projetos" ? "active" : "" ?>" href="<?= base_url("accounts/view/projects") ?>">Projects</a> 
-                  <a class="nav-link <?= $css_menu_user == "tarefas" ? "active" : "" ?>" href="<?= base_url("accounts/view/tasks") ?>">Tasks</a> 
+                  <a class="nav-link <?= $css_menu_user == "activities" ? "active" : "" ?>" href="<?= base_url("accounts/view/activities") ?>">Activities</a> 
+                  <a class="nav-link <?= $css_menu_user == "teams" ? "active" : "" ?>" href="<?= base_url("accounts/view/teams") ?>">Teams</a> 
+                  <a class="nav-link <?= $css_menu_user == "projects" ? "active" : "" ?>" href="<?= base_url("accounts/view/projects") ?>">Projects</a> 
+                  <a class="nav-link <?= $css_menu_user == "tasks" ? "active" : "" ?>" href="<?= base_url("accounts/view/tasks") ?>">Tasks</a> 
                   <a class="nav-link <?= $css_menu_user == "configuracoes" ? "active" : "" ?>" href="<?= base_url("accounts/view/settings") ?>">Settings</a>
                 </div><!-- /.nav -->
               </div><!-- /.nav-scroller -->

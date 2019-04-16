@@ -8,7 +8,7 @@
                         <div class="media mb-3">
                           <!-- avatar -->
                           <div class="user-avatar user-avatar-xl fileinput-button">
-                            <div class="fileinput-button-label"> Change photo </div><img src="assets/images/avatars/profile.jpg" alt=""> <input id="fileupload-avatar" type="file" name="avatar">
+                            <div class="fileinput-button-label"> Change photo </div><img src="<?= base_url_assets("assets/images/avatars/profile.jpg") ?>" alt=""> <input id="fileupload-avatar" type="file" name="avatar">
                           </div><!-- /avatar -->
                           <!-- .media-body -->
                           <div class="media-body pl-3">
@@ -27,54 +27,43 @@
                           <!-- form row -->
                           <div class="form-row">
                             <!-- form column -->
-                            <label for="input01" class="col-md-3">Cover image</label> <!-- /form column -->
+                            <label for="input02" class="col-md-3">Compania</label> <!-- /form column -->
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
-                              <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="input01" multiple> <label class="custom-file-label" for="input01">Choose cover</label>
-                              </div><small class="text-muted">Upload a new cover image, JPG 1200x300</small>
+                              <input type="text" name="compania" class="form-control" id="input02" value="">
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <!-- form row -->
                           <div class="form-row">
                             <!-- form column -->
-                            <label for="input02" class="col-md-3">Company</label> <!-- /form column -->
+                            <label for="input03" class="col-md-3">Biografia</label> <!-- /form column -->
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
-                              <input type="text" class="form-control" id="input02" value="CreativeDivision">
+                              <textarea class="form-control" name="biografia" id="input03"></textarea> <small class="text-muted">Appears on your profile page, 300 chars max.</small>
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <!-- form row -->
                           <div class="form-row">
                             <!-- form column -->
-                            <label for="input03" class="col-md-3">Profile Heading</label> <!-- /form column -->
-                            <!-- form column -->
-                            <div class="col-md-9 mb-3">
-                              <textarea class="form-control" id="input03">Huge fan of HTML, CSS and Javascript. Web design and open source lover.</textarea> <small class="text-muted">Appears on your profile page, 300 chars max.</small>
-                            </div><!-- /form column -->
-                          </div><!-- /form row -->
-                          <!-- form row -->
-                          <div class="form-row">
-                            <!-- form column -->
-                            <label for="input04" class="col-md-3">Available for hire?</label> <!-- /form column -->
+                            <label for="input04" class="col-md-3">Disponível para contratação?</label> <!-- /form column -->
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
                               <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="input04" checked> <label class="custom-control-label" for="input04">Yes, hire me</label>
+                                <input type="checkbox" name="contratacao" class="custom-control-input" id="input04" checked> <label class="custom-control-label" for="input04">Sim, contrate-me</label>
                               </div>
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <hr>
                           <!-- .form-actions -->
                           <div class="form-actions">
-                            <button type="submit" class="btn btn-primary ml-auto">Update Profile</button>
+                            <button type="submit" class="btn btn-primary ml-auto">Salvar Alteração</button>
                           </div><!-- /.form-actions -->
                         </form><!-- /form -->
                       </div><!-- /.card-body -->
                     </div><!-- /.card -->
                     <!-- .card -->
                     <div class="card card-fluid">
-                      <h6 class="card-header"> Social Networks </h6><!-- form -->
+                      <h6 class="card-header"> Redes Sociais </h6><!-- form -->
                       <form method="post">
                         <!-- .list-group -->
                         <div class="list-group list-group-flush mt-3 mb-0">
@@ -88,7 +77,7 @@
                             </div><!-- /.list-group-item-figure -->
                             <!-- .list-group-item-body -->
                             <div class="list-group-item-body">
-                              <input type="text" class="form-control" id="twitter" placeholder="Twitter Username" value="@stilearningTwit">
+                              <input type="text" class="form-control" id="twitter" placeholder="Twitter Username" name="url_twitter" value="">
                             </div><!-- /.list-group-item-body -->
                           </div><!-- /.list-group-item -->
                           <!-- .list-group-item -->
@@ -101,7 +90,7 @@
                             </div><!-- /.list-group-item-figure -->
                             <!-- .list-group-item-body -->
                             <div class="list-group-item-body">
-                              <input type="text" class="form-control" id="facebook" placeholder="Facebook Username">
+                              <input type="text" class="form-control" id="facebook" placeholder="Facebook Username" name="url_facebook">
                             </div><!-- /.list-group-item-body -->
                           </div><!-- /.list-group-item -->
                           <!-- .list-group-item -->
@@ -114,20 +103,7 @@
                             </div><!-- /.list-group-item-figure -->
                             <!-- .list-group-item-body -->
                             <div class="list-group-item-body">
-                              <input type="text" class="form-control" id="linkedin" placeholder="Linkedin Username">
-                            </div><!-- /.list-group-item-body -->
-                          </div><!-- /.list-group-item -->
-                          <!-- .list-group-item -->
-                          <div class="list-group-item">
-                            <!-- .list-group-item-figure -->
-                            <div class="list-group-item-figure">
-                              <div class="tile tile-md bg-dribbble">
-                                <i class="fab fa-dribbble"></i>
-                              </div>
-                            </div><!-- /.list-group-item-figure -->
-                            <!-- .list-group-item-body -->
-                            <div class="list-group-item-body">
-                              <input type="text" class="form-control" id="dribbble" placeholder="Dribbble Username">
+                              <input type="text" class="form-control" id="linkedin" placeholder="Linkedin Username" name="url_linkedin">
                             </div><!-- /.list-group-item-body -->
                           </div><!-- /.list-group-item -->
                           <!-- .list-group-item -->
@@ -140,7 +116,7 @@
                             </div><!-- /.list-group-item-figure -->
                             <!-- .list-group-item-body -->
                             <div class="list-group-item-body">
-                              <input type="text" class="form-control" id="github" placeholder="Github Username">
+                              <input type="text" class="form-control" id="github" placeholder="Github Username" name="url_github">
                             </div><!-- /.list-group-item-body -->
                           </div><!-- /.list-group-item -->
                         </div><!-- /.list-group -->
@@ -149,7 +125,7 @@
                           <hr>
                           <!-- .form-actions -->
                           <div class="form-actions">
-                            <button type="submit" class="btn btn-primary ml-auto">Update Socials</button>
+                            <button type="submit" class="btn btn-primary ml-auto">Salvar</button>
                           </div><!-- /.form-actions -->
                         </div><!-- /.card-body -->
                       </form><!-- /form -->

@@ -58,6 +58,9 @@ class Accounts extends MY_Controller {
 			$return_id = $this->accounts->inserirUsuario();
 			if(is_integer($return_id)){
 				$this->session->set_userdata("session_account",["email" => $this->input->post('email'), "cookie" => False]);
+				$hash = md5(date('Y-m-d H:i:s'));
+				$this->accounts->updateHashEmail("0",$hash);
+				$this->sendemail->enviarHashEmailCadastroInicial($this->input->post('nome'), $this->input->post('email'), $hash);
 				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
 			} else {
 				echo $return_id;
@@ -234,39 +237,12 @@ class Accounts extends MY_Controller {
 		} else redirect();
 	}
 
-	public function overview(){
+	public function details($view_account){
 		if ($this->logged){
-			$this->data["css_menu_user"] = "overview";
-			$this->loadViewLogged('dashboard/account/overview');
-		} else redirect();
-	}
-
-	public function atividades(){
-		if ($this->logged){
-			$this->data["css_menu_user"] = "atividades";
-			$this->loadViewLogged('dashboard/account/activities');
-		} else redirect();
-	}
-
-	public function times(){
-		if ($this->logged){
-			$this->data["css_menu_user"] = "times";
-			$this->loadViewLogged('dashboard/account/teams');
-		} else redirect();	
-	}
-
-	public function projetos(){
-		if ($this->logged){
-			$this->data["css_menu_user"] = "projetos";
-			$this->loadViewLogged('dashboard/account/projects');
-		} else redirect();	
-	}
-
-	public function tarefas(){
-		if ($this->logged){
-			$this->data["css_menu_user"] = "tarefas";
-			$this->loadViewLogged('dashboard/account/tasks');
-		} else redirect();	
+			$this->data["css_menu_user"] = "$view_account";
+			$this->data["view_account"] = "$view_account";
+			$this->loadViewLogged("dashboard/account/$view_account");
+		} else redirect();		
 	}
 
 	public function configuracoes($page = "settings"){

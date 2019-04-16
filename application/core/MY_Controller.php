@@ -35,6 +35,8 @@ class MY_Controller extends CI_Controller {
 		if ($this->session->userdata("session_account")){
 			$this->session_account = (object)$this->session->userdata("session_account");
 			$this->account = $this->accounts->getByEmail($this->session_account->email);
+			if (empty($this->account))
+				return false;
 			$this->data["_usuario"] = $this->account;
 			return true;
 		}
