@@ -3,6 +3,7 @@
 class MY_Controller extends CI_Controller {
 
 	public $data = [];
+
 	
 	public $logged = false;
 
@@ -17,6 +18,7 @@ class MY_Controller extends CI_Controller {
 	public $session_account;
 
 	public function __construct() {
+		$this->data['arrJS'] = [];
 		
 		parent::__construct();
 		
@@ -59,11 +61,42 @@ class MY_Controller extends CI_Controller {
 		return false;
 	}
 
-	public function loadViewLogged($nome){
+	public function loadViewLogged($nome, $arrJS = []){
+		$this->data['arrJS'] = [];
+		//<!-- BEGIN BASE JS -->
+		$this->addAssetsJsLooper("jquery.min.js","assets/vendor/jquery/");
+		$this->addAssetsJsLooper("popper.min.js","assets/vendor/bootstrap/js/");
+		$this->addAssetsJsLooper("bootstrap.min.js","assets/vendor/bootstrap/js/"); //<!-- END BASE JS -->
+		//<!-- BEGIN PLUGINS JS -->
+		$this->addAssetsJsLooper("pace.min.js","assets/vendor/pace/");
+		$this->addAssetsJsLooper("stacked-menu.min.js","assets/vendor/stacked-menu/");
+		$this->addAssetsJsLooper("perfect-scrollbar.min.js","assets/vendor/perfect-scrollbar/");
+		$this->addAssetsJsLooper("parsley.min.js","assets/vendor/parsleyjs/");
+		$this->addAssetsJsLooper("vanillaTextMask.js","assets/vendor/text-mask/");
+		$this->addAssetsJsLooper("textMaskAddons.js","assets/vendor/text-mask/addons/"); //<!-- END PLUGINS JS -->
+		//<!-- BEGIN THEME JS -->
+		$this->addAssetsJsLooper("theme.min.js","assets/javascript/"); //<!-- END THEME JS -->
+		//<!-- BEGIN PAGE LEVEL JS -->
+		$this->addAssetsJs("submit-form.js"); //<!-- END PAGE LEVEL JS -->
+
+		$this->data['arrJS'] = array_merge($this->data['arrJS'], $arrJS);
+
 		$this->load->view('dashboard/comuns/header', $this->data);
 		$this->load->view('dashboard/comuns/navbar', $this->data);
 		$this->load->view('dashboard/comuns/menu', $this->data);
 		$this->load->view($nome, $this->data);
 		$this->load->view('dashboard/comuns/footer', $this->data);
+	}
+
+	private function addJS($js, $dir){
+		array_push($this->data['arrJS'], "$dir$js");
+	}
+
+	protected function addAssetsJs($js){
+		$this->addJS($js, base_url("assets/js/"));
+	}
+
+	protected function addAssetsJsLooper($js, $dir){
+		$this->addJS($js, base_url_assets($dir));
 	}
 }

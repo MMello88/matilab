@@ -46,7 +46,7 @@ function () {
             $groupStep.addClass('success');
             
             if ($trigger.hasClass('submit')) {
-              window.location = base_url;
+              window.location = concat(base_url,'accounts/view/settings');
             } else {
               stepperDemo.next();
             }

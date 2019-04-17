@@ -6,8 +6,6 @@ class Accounts extends MY_Controller {
 	public function __construct(){
 		
 		parent::__construct();
-
-		$this->data['js'] = "<script src=\"".base_url("assets/js/accounts.js")."\" ></script>";
 	}
 
 	public function validate_session_account(){
@@ -232,7 +230,14 @@ class Accounts extends MY_Controller {
 	{
 		if ($this->logged){
 			if ($this->account->cadastro_completo == "0"){
-				$this->loadViewLogged('accounts/register/continuar');				
+				$this->addAssetsJsLooper("bs-stepper.min.js","assets/vendor/bs-stepper/js/");
+				$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");				
+				$this->addAssetsJs("toastr-steps.js");
+				$this->addAssetsJs("steps-cadastro.js");
+				$this->addAssetsJs("accounts.js");
+				if($this->account->email_valid == '1')
+					$this->addAssetsJs("steps-email-valid.js");
+				$this->loadViewLogged('accounts/register/continuar', $this->data['arrJS']);				
 			} else redirect();
 		} else redirect();
 	}

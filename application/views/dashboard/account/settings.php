@@ -30,7 +30,7 @@
                             <label for="input02" class="col-md-3">Compania</label> <!-- /form column -->
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
-                              <input type="text" name="compania" class="form-control" id="input02" value="">
+                              <input type="text" name="compania" class="form-control sendToSave" id="input02" value="">
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <!-- form row -->
@@ -39,7 +39,7 @@
                             <label for="input03" class="col-md-3">Biografia</label> <!-- /form column -->
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
-                              <textarea class="form-control" name="biografia" id="input03"></textarea> <small class="text-muted">Appears on your profile page, 300 chars max.</small>
+                              <textarea class="form-control sendToSave" name="biografia" id="input03"></textarea> <small class="text-muted">Appears on your profile page, 300 chars max.</small>
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <!-- form row -->
@@ -49,14 +49,14 @@
                             <!-- form column -->
                             <div class="col-md-9 mb-3">
                               <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="contratacao" class="custom-control-input" id="input04" checked> <label class="custom-control-label" for="input04">Sim, contrate-me</label>
+                                <input type="checkbox" name="contratacao" class="custom-control-input sendToSave" id="input04" checked> <label class="custom-control-label" for="input04">Sim, contrate-me</label>
                               </div>
                             </div><!-- /form column -->
                           </div><!-- /form row -->
                           <hr>
                           <!-- .form-actions -->
                           <div class="form-actions">
-                            <button type="submit" class="btn btn-primary ml-auto">Salvar Alteração</button>
+                            <button type="button" class="btn btn-primary ml-auto">Salvar Alteração</button>
                           </div><!-- /.form-actions -->
                         </form><!-- /form -->
                       </div><!-- /.card-body -->
