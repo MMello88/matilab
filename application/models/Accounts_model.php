@@ -68,6 +68,37 @@ class Accounts_model extends CI_Model {
         return $this->db->update('usuario', $data, $condicao);
     }
 
+    public function saveSettingsProfile(){
+        $data = [
+            'compania' => $this->input->post('compania'),
+            'biografia' => $this->input->post('biografia'),
+            'contratacao' => $this->input->post('contratacao') == "on" ? "1":"0",
+        ];
+
+
+        $condicao = [
+            'email' => $this->session->userdata("session_account")["email"],
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);   
+    }
+
+    public function saveSettingsProfileRedeSocial(){
+        $data = [
+            'url_linkedin' => $this->input->post('url_linkedin'),
+            'url_facebook' => $this->input->post('url_facebook'),
+            'url_twitter' => $this->input->post('url_twitter'),
+            'url_github' => $this->input->post('url_github'),
+        ];
+
+
+        $condicao = [
+            'email' => $this->session->userdata("session_account")["email"],
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);   
+    }
+
     public function getByEmail($email) {
         $query = $this->db->get_where('usuario', array('email' => $email));
         $result = $query->result_object();

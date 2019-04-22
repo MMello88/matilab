@@ -13,8 +13,9 @@ var submitForm =
 function () {
   function submitForm() {
     _classCallCheck(this, submitForm);
-
+    console.log("abcdef");
     this.init();
+    
   }
 
   _createClass(submitForm, [{
@@ -35,6 +36,7 @@ function () {
         data: $form.serialize(),
         success: function(data){
           var jsonData = JSON.parse(data);
+          console.log(jsonData);
           if(jsonData.code == '1'){
             varToastr.delayToasts("success",jsonData.message);
             
@@ -63,8 +65,7 @@ function () {
       var self = this; // validate on save buttons
 
       $('.sendToSave').on('click', function () {
-        console.log(this);
-        //self.validateBy(this);
+        self.validateBy(this);
       });
     }
   }]);

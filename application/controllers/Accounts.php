@@ -177,6 +177,22 @@ class Accounts extends MY_Controller {
 		}
 	}
 
+	public function save_settings_profile(){
+		$this->form_validation->set_rules('compania', 'Nome da Compania', 'trim|required');
+		$this->form_validation->set_rules('biografia', 'Biografia da Carreira', 'trim|required');
+		if ($this->form_validation->run() === TRUE){
+			$this->accounts->saveSettingsProfile();
+			echo json_encode(["code" => "1", "message" => "Perfil alterado com sucesso!"]);
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
+		}
+	}
+
+	public function save_settings_profile_redesocial(){
+		$this->accounts->saveSettingsProfileRedeSocial();
+		echo json_encode(["code" => "1", "message" => "Rede Sociais alterado com sucesso!"]);
+	}
+
 	public function logout_account(){
 		$this->session->unset_userdata("session_account");
 		$this->account = null;
@@ -255,7 +271,10 @@ class Accounts extends MY_Controller {
 			$this->data["css_menu_user"] = "configuracoes";
 			$this->data["css_view_user"] = "$page";
 			$this->data["page_user_view"] = "$page";
-			$this->loadViewLogged("dashboard/account/setting");
+			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");				
+			$this->addAssetsJs("toastr-steps.js");
+			$this->addAssetsJs("submit-form.js");
+			$this->loadViewLogged("dashboard/account/setting", $this->data['arrJS']);
 		} else redirect();	
 	}
 }

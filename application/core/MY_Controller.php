@@ -76,9 +76,7 @@ class MY_Controller extends CI_Controller {
 		$this->addAssetsJsLooper("textMaskAddons.js","assets/vendor/text-mask/addons/"); //<!-- END PLUGINS JS -->
 		//<!-- BEGIN THEME JS -->
 		$this->addAssetsJsLooper("theme.min.js","assets/javascript/"); //<!-- END THEME JS -->
-		//<!-- BEGIN PAGE LEVEL JS -->
-		$this->addAssetsJs("submit-form.js"); //<!-- END PAGE LEVEL JS -->
-
+		
 		$this->data['arrJS'] = array_merge($this->data['arrJS'], $arrJS);
 
 		$this->load->view('dashboard/comuns/header', $this->data);
