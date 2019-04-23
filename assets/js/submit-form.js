@@ -8,14 +8,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // Class Template
 // =============================================================
+var $image_crop;
+
 var submitForm =
 /*#__PURE__*/
 function () {
   function submitForm() {
     _classCallCheck(this, submitForm);
-    console.log("abcdef");
     this.init();
-    
   }
 
   _createClass(submitForm, [{
@@ -60,6 +60,54 @@ function () {
       });
     }
   }, {
+    key: "uploadAvatarClick",
+    value: function uploadAvatarClick(trigger) {
+
+      $image_crop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+      }).then(function(response){
+        $.ajax({
+          type: "POST",
+          url: base_url + "Accounts/settings_upload_avatar",
+          data:{"image": response},
+          success:function(data)
+          {
+            $('#avatarModal').modal('hide');
+            //$('#uploaded_image').html(data);
+            $("#imgAvatar").attr("src", base_url_assets + "assets/images/avatars/" + data);
+          }
+        });
+      })
+    }
+  }, {
+    key: "uploadAvatarChange",
+    value: function uploadAvatarChange(trigger) {
+      $image_crop = $('#image_demo').croppie({
+        enableExif: true,
+        viewport: {
+          width:200,
+          height:200,
+          type:'square' //circle, square
+        },
+        boundary:{
+          width:300,
+          height:300
+        }
+      });
+
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $image_crop.croppie('bind', {
+          url: event.target.result
+        }).then(function(){
+          console.log('jQuery bind complete');
+        });
+      }
+      reader.readAsDataURL(trigger.files[0]);
+      $('#avatarModal').modal('show');
+    }
+  }, {
     key: "handleValidations",
     value: function handleValidations() {
       var self = this; // validate on save buttons
@@ -67,6 +115,14 @@ function () {
       $('.sendToSave').on('click', function () {
         self.validateBy(this);
       });
+
+      $('.sendToSaveAvatar').on('click', function () {
+        self.uploadAvatarClick(this);
+      });
+
+      $('.viewAvatar').on('change', function () {
+        self.uploadAvatarChange(this);
+      });      
     }
   }]);
 

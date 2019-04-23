@@ -31,6 +31,7 @@
     </script><!-- End SEO tag -->
     <script>
       var base_url = "<?= base_url(); ?>";
+      var base_url_assets = "<?= base_url_assets(); ?>";
     </script>
     <!-- FAVICONS -->
     <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url_assets("assets/apple-touch-icon.png") ?>">
@@ -46,6 +47,9 @@
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme.min.css") ?>" data-skin="default">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme-dark.min.css") ?>" data-skin="dark">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/custom.css") ?>"><!-- Disable unused skin immediately -->
+    <?php if($css_view_user == "settings") { ?>
+    <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/croppie/croppie.css") ?>">
+    <?php } ?>
     <script> var skin = localStorage.getItem('skin') || 'default';
     var unusedLink = document.querySelector('link[data-skin]:not([data-skin="'+ skin +'"])');
 

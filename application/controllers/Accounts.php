@@ -193,6 +193,26 @@ class Accounts extends MY_Controller {
 		echo json_encode(["code" => "1", "message" => "Rede Sociais alterado com sucesso!"]);
 	}
 
+	public function settings_upload_avatar()
+	{
+		if(isset($_POST["image"]))
+		{
+			 $data = $_POST["image"];
+
+			 $image_array_1 = explode(";", $data);
+
+			 $image_array_2 = explode(",", $image_array_1[1]);
+
+			 $data = base64_decode($image_array_2[1]);
+
+			 $imageName = time() . '.png';
+
+			 file_put_contents($this->base_url_assets("assets/images/avatars/$imageName"), $data);
+
+			 echo $imageName;
+		} else echo "tese";
+	}
+
 	public function logout_account(){
 		$this->session->unset_userdata("session_account");
 		$this->account = null;
@@ -258,7 +278,8 @@ class Accounts extends MY_Controller {
 		} else redirect();
 	}
 
-	public function details($view_account){
+	public function details($view_account)
+	{
 		if ($this->logged){
 			$this->data["css_menu_user"] = "$view_account";
 			$this->data["view_account"] = "$view_account";
@@ -266,14 +287,20 @@ class Accounts extends MY_Controller {
 		} else redirect();		
 	}
 
-	public function configuracoes($page = "settings"){
+	public function configuracoes($page = "settings")
+	{
 		if ($this->logged){
 			$this->data["css_menu_user"] = "configuracoes";
 			$this->data["css_view_user"] = "$page";
 			$this->data["page_user_view"] = "$page";
+			if($page == "settings"){
+				$this->addAssetsJsLooper("croppie.min.js","assets/vendor/croppie/");
+				$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
+			}			
 			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");				
 			$this->addAssetsJs("toastr-steps.js");
 			$this->addAssetsJs("submit-form.js");
+
 			$this->loadViewLogged("dashboard/account/setting", $this->data['arrJS']);
 		} else redirect();	
 	}

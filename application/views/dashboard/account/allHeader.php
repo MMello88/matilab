@@ -1,7 +1,7 @@
             <!-- .page-cover -->
             <header class="page-cover">
               <div class="text-center">
-                <a href="user-profile.html" class="user-avatar user-avatar-xl"><img src="<?= base_url_assets("assets/images/avatars/profile.jpg") ?>" alt=""></a>
+                <a href="user-profile.html" class="user-avatar user-avatar-xl"><img src="<?= base_url_assets("assets/images/avatars/$_usuario->imagem_perfil") ?>" alt=""></a>
                 <h2 class="h4 mt-2 mb-0"> <?= $_usuario->nome ?> </h2>
                 <div class="my-1">
                   <i class="fa fa-star text-yellow"></i>

@@ -8,7 +8,7 @@
                         <div class="media mb-3">
                           <!-- avatar -->
                           <div class="user-avatar user-avatar-xl fileinput-button">
-                            <div class="fileinput-button-label"> Change photo </div><img src="<?= base_url_assets("assets/images/avatars/profile.jpg") ?>" alt=""> <input id="fileupload-avatar" type="file" name="avatar">
+                            <div class="fileinput-button-label"> Change photo </div><img id="imgAvatar" src="<?= base_url_assets("assets/images/avatars/$_usuario->imagem_perfil") ?>" alt=""> <input id="fileupload-avatar" class="viewAvatar" type="file" name="avatar">
                           </div><!-- /avatar -->
                           <!-- .media-body -->
                           <div class="media-body pl-3">
@@ -131,3 +131,31 @@
                       <?= form_close() ?>
                     </div><!-- /.card -->
                   </div><!-- /grid column -->
+
+                  <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModalLabel" aria-hidden="true">
+                    <!-- .modal-dialog -->
+                    <div class="modal-dialog" role="document">
+                      <!-- .modal-content -->
+                      <div class="modal-content">
+                        <!-- .modal-header -->
+                        <div class="modal-header">
+                          <h5 id="avatarModalLabel" class="modal-title"> Ajustar a Imagem </h5>
+                        </div><!-- /.modal-header -->
+                        <!-- .modal-body -->
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-8 text-center">
+                              <div id="image_demo" style="width:350px; margin-top:30px"></div>
+                            </div>
+                            <div class="col-md-4" style="padding-top:30px;">
+                              <button class="btn btn-success sendToSaveAvatar">Crop</button>
+                            </div>
+                          </div>
+                        </div><!-- /.modal-body -->
+                        <!-- .modal-footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        </div><!-- /.modal-footer -->
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
