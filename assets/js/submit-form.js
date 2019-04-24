@@ -73,9 +73,13 @@ function () {
           data:{"image": response},
           success:function(data)
           {
-            $('#avatarModal').modal('hide');
-            //$('#uploaded_image').html(data);
+            $("#imgAvatarNavBar").attr("src", base_url_assets + "assets/images/avatars/" + data);
+            $("#imgAvatarHeader").attr("src", base_url_assets + "assets/images/avatars/" + data);
             $("#imgAvatar").attr("src", base_url_assets + "assets/images/avatars/" + data);
+          },
+          error: function(data){
+            console.log(data);
+            varToastr.delayToasts("danger", data);
           }
         });
       })
@@ -83,6 +87,22 @@ function () {
   }, {
     key: "uploadAvatarChange",
     value: function uploadAvatarChange(trigger) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $image_crop.croppie('bind', {
+          url: event.target.result
+        }).then(function(){
+          console.log('jQuery bind complete');
+        });
+      }
+      reader.readAsDataURL(trigger.files[0]);
+      //$('#avatarModal').modal('show');
+    }
+  }, {
+    key: "handleValidations",
+    value: function handleValidations() {
+      var self = this; // validate on save buttons
+
       $image_crop = $('#image_demo').croppie({
         enableExif: true,
         viewport: {
@@ -95,22 +115,6 @@ function () {
           height:300
         }
       });
-
-      var reader = new FileReader();
-      reader.onload = function (event) {
-        $image_crop.croppie('bind', {
-          url: event.target.result
-        }).then(function(){
-          console.log('jQuery bind complete');
-        });
-      }
-      reader.readAsDataURL(trigger.files[0]);
-      $('#avatarModal').modal('show');
-    }
-  }, {
-    key: "handleValidations",
-    value: function handleValidations() {
-      var self = this; // validate on save buttons
 
       $('.sendToSave').on('click', function () {
         self.validateBy(this);

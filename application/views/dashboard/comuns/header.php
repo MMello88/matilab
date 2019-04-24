@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme.min.css") ?>" data-skin="default">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/theme-dark.min.css") ?>" data-skin="dark">
     <link rel="stylesheet" href="<?= base_url_assets("assets/stylesheets/custom.css") ?>"><!-- Disable unused skin immediately -->
-    <?php if($css_view_user == "settings") { ?>
+    <?php if(isset($css_view_user) && $css_view_user == "settings") { ?>
     <link rel="stylesheet" href="<?= base_url_assets("assets/vendor/croppie/croppie.css") ?>">
     <?php } ?>
     <script> var skin = localStorage.getItem('skin') || 'default';

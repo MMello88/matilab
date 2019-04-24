@@ -64,7 +64,7 @@
               </ul><!-- /.nav -->
               <!-- .btn-account -->
               <div class="dropdown">
-                <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img src="<?= base_url_assets("assets/images/avatars/$_usuario->imagem_perfil") ?>" alt=""></span> <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name"><?= $_usuario->nome ?></span> <span class="account-description"><?= $_usuario->super_usuario ?></span></span></button>
+                <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img id="imgAvatarNavBar" src="<?= base_url_assets("assets/images/avatars/$_usuario->imagem_perfil") ?>" alt=""></span> <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name"><?= $_usuario->nome ?></span> <span class="account-description"><?= $_usuario->super_usuario ?></span></span></button>
                 <div class="dropdown-arrow dropdown-arrow-left"></div><!-- .dropdown-menu -->
                 <div class="dropdown-menu">
                   <h6 class="dropdown-header d-none d-md-block d-lg-none"> <?= $_usuario->nome?> </h6><a class="dropdown-item" href="#"><span class="dropdown-icon oi oi-person"></span> Profile</a> <a class="dropdown-item" href="<?= base_url("logout") ?>"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
