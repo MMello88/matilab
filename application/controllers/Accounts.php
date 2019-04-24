@@ -199,18 +199,33 @@ class Accounts extends MY_Controller {
 		if ($this->form_validation->run() == TRUE)
 		{
 			$data = $_POST["image"];
-
-			$image_array_1 = explode(";", $data);
-
-			$image_array_2 = explode(",", $image_array_1[1]);
-
-			$data = base64_decode($image_array_2[1]);
-
-			$imageName = uniqid(time()) . '.png';
-
-			file_put_contents(APPPATH."../assets/looper/dist/assets/images/avatars/$imageName", $data);
-
-			echo $imageName;
+			$image_settings = explode(";", $data);
+			$settings_codeBase64 = $image_settings[1];
+			$settings_extensao = $image_settings[0];
+			$extensoes = ["jpg","jpeg","png"];
+			$ext_arquivo = "";
+			foreach ($extensoes as $ext) {
+				if (strstr($settings_extensao, $ext)) {
+					$ext_arquivo = $ext;
+				}
+			}
+			if (!empty($ext_arquivo)) {
+				$arrCodeBase64 = explode(",", $settings_codeBase64);
+				$data = base64_decode($arrCodeBase64[1]);
+				$imagem_perfil = uniqid(time()) . '.' . $ext_arquivo;
+				$this->accounts->saveSettingsAvatar($imagem_perfil);
+				if (@file_put_contents(APPPATH."../assets/looper/dist/assets/images/avatars/$imagem_perfil", $data)){
+					if($this->account->imagem_perfil != "unknown-profile.jpg")
+						unlink(APPPATH."../assets/looper/dist/assets/images/avatars/{$this->account->imagem_perfil}");
+					echo json_encode(["code" => "1", "message" => "Imagem enviada com sucesso!", "img" => $imagem_perfil]);
+				} else {
+					echo json_encode(["code" => "2", "message" => "Erro ao gravar a imagem. Tente novamente em alguns instantes."]);
+				}
+			} else {
+				echo json_encode(["code" => "2", "message" => "Você poderá enviar apenas arquivos *.jpg;*.jpeg;*.png"]);
+			}
+		} else {
+			echo json_encode(["code" => "2", "message" => validation_errors(null,null)]);
 		}
 	}
 
@@ -298,7 +313,7 @@ class Accounts extends MY_Controller {
 				$this->addAssetsJsLooper("croppie.min.js","assets/vendor/croppie/");
 				$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
 			}			
-			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");				
+			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");
 			$this->addAssetsJs("toastr-steps.js");
 			$this->addAssetsJs("submit-form.js");
 

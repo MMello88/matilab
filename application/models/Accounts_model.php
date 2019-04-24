@@ -84,6 +84,18 @@ class Accounts_model extends CI_Model {
         return $this->db->update('usuario', $data, $condicao);   
     }
 
+    public function saveSettingsAvatar($imagem_perfil){
+        $data = [
+            'imagem_perfil' => $imagem_perfil,
+        ];
+
+        $condicao = [
+            'email' => $this->session->userdata("session_account")["email"],
+        ];
+
+        return $this->db->update('usuario', $data, $condicao);   
+    }
+
     public function saveSettingsProfileRedeSocial(){
         $data = [
             'url_linkedin' => $this->input->post('url_linkedin'),

@@ -62,7 +62,7 @@ function () {
   }, {
     key: "uploadAvatarClick",
     value: function uploadAvatarClick(trigger) {
-
+      var toastmsg = varToastr;
       $image_crop.croppie('result', {
         type: 'canvas',
         size: 'viewport'
@@ -73,13 +73,18 @@ function () {
           data:{"image": response},
           success:function(data)
           {
-            $("#imgAvatarNavBar").attr("src", base_url_assets + "assets/images/avatars/" + data);
-            $("#imgAvatarHeader").attr("src", base_url_assets + "assets/images/avatars/" + data);
-            $("#imgAvatar").attr("src", base_url_assets + "assets/images/avatars/" + data);
+            var jdata = JSON.parse(data);
+            if(jdata.code == '1'){
+              $("#imgAvatarNavBar").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
+              $("#imgAvatarHeader").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
+              $("#imgAvatar").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
+              toastmsg.delayToasts("info",jdata.message);
+            } else {
+              toastmsg.delayToasts("info",jdata.message);
+            }
           },
           error: function(data){
-            console.log(data);
-            varToastr.delayToasts("danger", data);
+            toastmsg.delayToasts("danger", data);
           }
         });
       })
