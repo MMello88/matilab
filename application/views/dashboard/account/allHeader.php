@@ -11,7 +11,7 @@
                   <i class="far fa-star text-yellow"></i>
                 </div>
                 <p class="text-muted"> Usuário <?= $_usuario->super_usuario ?> </p>
-                <!--<p> Huge fan of HTML, CSS and Javascript. Web design and open source lover. </p>-->
+                <p> <?= $_usuario->biografia ?> </p>
               </div><!-- .cover-controls -->
               <div class="cover-controls cover-controls-bottom">
                 <a href="#" class="btn btn-light" data-toggle="modal" data-target="#followersModal">0 Followers</a>

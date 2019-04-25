@@ -53,11 +53,16 @@ class Accounts_model extends CI_Model {
     }
 
     public function updateContinuacao(){
+        $super_usuario = $this->input->post('super_usuario');
+        if(!strstr('@', $this->input->post('super_usuario'))){
+            $super_usuario = "@".$this->input->post('super_usuario');
+        }
+        
         $data = [
             'dt_nascimento' => $this->input->post('dt_nascimento'),
             'celular' => $this->input->post('celular'),
             'sexo' => $this->input->post('sexo'),
-            'super_usuario' => $this->input->post('super_usuario'),
+            'super_usuario' => $super_usuario,
             'cadastro_completo' => '1',
         ];
 
@@ -149,6 +154,18 @@ class Accounts_model extends CI_Model {
 
     public function getByCookie($hash) {
         $query = $this->db->get_where('usuario', array('code_cookie_hash' => $hash));
+        $result = $query->result_object();
+        return empty($result) ? "" : $result[0];
+    }
+
+    public function checkSuperUsuarioUnico(){
+        $data = [
+            'super_usuario' => $this->input->post('super_usuario'),
+        ]
+        $condicao = [
+            'email' => $this->session->userdata("session_account")["email"],
+        ];
+        $query = $this->db->get_where('usuario', $condicao);
         $result = $query->result_object();
         return empty($result) ? "" : $result[0];
     }
