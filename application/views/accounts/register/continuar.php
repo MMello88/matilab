@@ -136,7 +136,7 @@
                                 </div><!-- /.custom-control -->
                                 <!-- .custom-control -->
                                 <div class="custom-control custom-radio mb-4">
-                                  <input type="radio" id="customRadioSexoFeminino" class="custom-control-input" name="sexo" value="f" <?= $_usuario->sexo == "m" ? "checked" : "" ?>> <label class="custom-control-label" for="customRadioSexoFeminino">Feminino</label> <!-- .custom-control-hint -->
+                                  <input type="radio" id="customRadioSexoFeminino" class="custom-control-input" name="sexo" value="f" <?= $_usuario->sexo == "f" ? "checked" : "" ?>> <label class="custom-control-label" for="customRadioSexoFeminino">Feminino</label> <!-- .custom-control-hint -->
                                 </div>
                               </div><!-- /.form-group -->
                               <hr class="mt-5">

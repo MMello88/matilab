@@ -61,6 +61,9 @@ class Accounts_model extends CI_Model {
             'cadastro_completo' => '1',
         ];
 
+        if($this->input->post('senha_new') !== null){
+            $data['senha'] = md5($this->input->post('senha_new'));
+        }
 
         $condicao = [
             'email' => $this->session->userdata("session_account")["email"],

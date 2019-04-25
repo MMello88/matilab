@@ -129,8 +129,29 @@ class Accounts extends MY_Controller {
 		$this->form_validation->set_rules('dt_nascimento', 'Data Nascimento', 'trim|required');
 		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
 		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
-		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required|is_unique[tbl_usuario.super_usuario]');
+		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required');
 		if ($this->form_validation->run() === TRUE){
+			if($this->input->post('senha_new') !== null){
+				if($this->input->post('senha_old') !== null){
+					if(!empty($this->input->post('senha_old')) && !empty($this->input->post('senha_new'))){
+						if($this->input->post('senha_old') == $this->input->post('senha_new')){
+							echo json_encode(["code" => "2", "message" => "A senha não pode ser iguais!"]);
+							return;
+						}
+					} else {
+						if (empty($this->input->post('senha_old'))){
+							echo json_encode(["code" => "2", "message" => "Informe a senha Atual!"]);
+							return;
+						}
+
+						if (empty($this->input->post('senha_new'))){
+							echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
+							return;
+						}
+					}
+				} 
+			}
+
 			if($this->accounts->updateContinuacao()){
 				$this->session->set_userdata("session_account",["email" => $this->account->email, "cookie" => False]);
 				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
@@ -309,10 +330,9 @@ class Accounts extends MY_Controller {
 			$this->data["css_menu_user"] = "configuracoes";
 			$this->data["css_view_user"] = "$page";
 			$this->data["page_user_view"] = "$page";
-			if($page == "settings"){
-				$this->addAssetsJsLooper("croppie.min.js","assets/vendor/croppie/");
-				$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
-			}			
+			
+			$this->addAssetsJsLooper("croppie.min.js","assets/vendor/croppie/");
+			$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
 			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");
 			$this->addAssetsJs("toastr-steps.js");
 			$this->addAssetsJs("submit-form.js");
