@@ -54,7 +54,7 @@ class Accounts_model extends CI_Model {
 
     public function updateContinuacao(){
         $super_usuario = $this->input->post('super_usuario');
-        if(!strstr('@', $this->input->post('super_usuario'))){
+        if(!strstr($this->input->post('super_usuario'), "@")){
             $super_usuario = "@".$this->input->post('super_usuario');
         }
         
@@ -158,15 +158,22 @@ class Accounts_model extends CI_Model {
         return empty($result) ? "" : $result[0];
     }
 
-    public function checkSuperUsuarioUnico(){
-        $data = [
-            'super_usuario' => $this->input->post('super_usuario'),
-        ]
+    public function existeSuperUsuario(){
         $condicao = [
-            'email' => $this->session->userdata("session_account")["email"],
+            'super_usuario' => $this->input->post('super_usuario')
         ];
         $query = $this->db->get_where('usuario', $condicao);
-        $result = $query->result_object();
-        return empty($result) ? "" : $result[0];
+        $row = $query->row();
+
+        if (isset($row))
+        {
+            if($row->email == $this->session->userdata("session_account")["email"]){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 }

@@ -130,6 +130,11 @@ class Accounts extends MY_Controller {
 		$this->form_validation->set_rules('celular', 'Número Celular', 'trim|required');
 		$this->form_validation->set_rules('sexo', 'Sexo', 'trim|required');
 		$this->form_validation->set_rules('super_usuario', 'Super Usuário', 'trim|required');
+		if($this->accounts->existeSuperUsuario()){
+			echo json_encode(["code" => "2", "message" => "Super Usuário já existe! <br/>Por favor informe um outro Super Usuário"]);
+			return;
+		}
+
 		if ($this->form_validation->run() === TRUE){
 			if($this->input->post('senha_new') !== null){
 				if($this->input->post('senha_old') !== null){
@@ -139,12 +144,12 @@ class Accounts extends MY_Controller {
 							return;
 						}
 					} else {
-						if (empty($this->input->post('senha_old'))){
+						if (empty($this->input->post('senha_old')) && !empty($this->input->post('senha_new'))){
 							echo json_encode(["code" => "2", "message" => "Informe a senha Atual!"]);
 							return;
 						}
 
-						if (empty($this->input->post('senha_new'))){
+						if (empty($this->input->post('senha_new')) && !empty($this->input->post('senha_old'))){
 							echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
 							return;
 						}
