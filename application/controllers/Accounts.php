@@ -145,11 +145,21 @@ class Accounts extends MY_Controller {
 						}
 					} else {
 						if (empty($this->input->post('senha_old')) && !empty($this->input->post('senha_new'))){
+							if(length($this->input->post('senha_old')) >= 6){
+								echo json_encode(["code" => "2", "message" => "O tamanho da senha Nova "]);
+								return;
+							}
+
 							echo json_encode(["code" => "2", "message" => "Informe a senha Atual!"]);
 							return;
 						}
 
 						if (empty($this->input->post('senha_new')) && !empty($this->input->post('senha_old'))){
+							if(length($this->input->post('senha_new')) >= 6){
+								echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
+								return;
+							}
+
 							echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
 							return;
 						}
@@ -159,7 +169,7 @@ class Accounts extends MY_Controller {
 
 			if($this->accounts->updateContinuacao()){
 				$this->session->set_userdata("session_account",["email" => $this->account->email, "cookie" => False]);
-				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
+				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!".json_encode($_POST)]);
 			} else {
 				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 			}
@@ -325,7 +335,14 @@ class Accounts extends MY_Controller {
 		if ($this->logged){
 			$this->data["css_menu_user"] = "$view_account";
 			$this->data["view_account"] = "$view_account";
-			$this->loadViewLogged("dashboard/account/$view_account");
+			
+			$this->addAssetsJsLooper("croppie.min.js","assets/vendor/croppie/");
+			$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
+			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");
+			$this->addAssetsJs("toastr-steps.js");
+			$this->addAssetsJs("submit-form.js");
+
+			$this->loadViewLogged("dashboard/account/$view_account", $this->data['arrJS']);
 		} else redirect();		
 	}
 
@@ -340,7 +357,7 @@ class Accounts extends MY_Controller {
 			$this->addAssetsJsLooper("croppie.js","assets/vendor/croppie/");
 			$this->addAssetsJsLooper("toastr.min.js","assets/vendor/toastr/");
 			$this->addAssetsJs("toastr-steps.js");
-			$this->addAssetsJs("submit-form.js");
+			$this->addAssetsJs("submit-form-accounts.js");
 
 			$this->loadViewLogged("dashboard/account/setting", $this->data['arrJS']);
 		} else redirect();	

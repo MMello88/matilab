@@ -59,6 +59,7 @@ class Accounts_model extends CI_Model {
         }
         
         $data = [
+            'nome' => $this->input->post('nome'),
             'dt_nascimento' => $this->input->post('dt_nascimento'),
             'celular' => $this->input->post('celular'),
             'sexo' => $this->input->post('sexo'),

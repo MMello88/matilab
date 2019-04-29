@@ -39,3 +39,15 @@ CREATE TABLE IF NOT EXISTS `tbl_ci_sessions` (
 );
 
 ALTER TABLE tbl_ci_sessions ADD PRIMARY KEY (id);
+
+CREATE TABLE `miste872_matilab`.`tbl_teams`(  
+  `id_team` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `titulo` VARCHAR(150) NOT NULL,
+  `descricao` VARCHAR(250) NOT NULL,
+  `imagem` VARCHAR(100) NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `dt_criacao` DATETIME NOT NULL,
+  PRIMARY KEY (`id_team`),
+  CONSTRAINT `fk_teams_usuario_owner` FOREIGN KEY (`id_usuario`) REFERENCES `miste872_matilab`.`tbl_usuario`(`id_usuario`)
+);

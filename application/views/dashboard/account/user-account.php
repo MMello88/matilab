@@ -48,14 +48,14 @@
                           </div><!-- /.form-group -->
                           <!-- .form-group -->
                           <div class="form-group">
-                            <label for="input04">New Password</label> <input type="password" class="form-control" name="senha_new" value="" required="">
+                            <label for="input04">New Password</label> <input type="password" class="form-control" minlength="6" name="senha_new" value="">
                           </div><!-- /.form-group -->
                           <!-- .form-group -->
                           <hr>
                           <!-- .form-actions -->
                           <div class="form-actions">
                             <!-- enable submit btn when user type their current password -->
-                            <input type="password" name="senha_old" class="form-control mr-3" placeholder="Entra senha atual" required=""> <button type="button" class="btn btn-primary text-nowrap ml-auto sendToSave">Alterar Conta</button>
+                            <input type="password" name="senha_old" class="form-control mr-3" minlength="6" placeholder="Entra senha atual"> <button type="button" class="btn btn-primary text-nowrap ml-auto sendToSave">Alterar Conta</button>
                           </div><!-- /.form-actions -->
                         <?= form_close() ?><!-- /form -->
                       </div><!-- /.card-body -->
