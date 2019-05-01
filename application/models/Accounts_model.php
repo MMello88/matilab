@@ -59,13 +59,16 @@ class Accounts_model extends CI_Model {
         }
         
         $data = [
-            'nome' => $this->input->post('nome'),
             'dt_nascimento' => $this->input->post('dt_nascimento'),
             'celular' => $this->input->post('celular'),
             'sexo' => $this->input->post('sexo'),
             'super_usuario' => $super_usuario,
             'cadastro_completo' => '1',
         ];
+
+        if($this->input->post('nome') !== null){
+            $data['nome'] = md5($this->input->post('nome'));
+        }
 
         if($this->input->post('senha_new') !== null){
             $data['senha'] = md5($this->input->post('senha_new'));

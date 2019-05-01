@@ -104,6 +104,15 @@ function () {
       //$('#avatarModal').modal('show');
     }
   }, {
+    key: "clearInput",
+    value: function clearInput(trigger, tipo) {
+      var $trigger = $(trigger); //Botão diparado
+      var $form = $trigger.parents('form');
+      if (tipo == "clearPass"){
+        $('input[type="password"]').val('');
+      }
+    }
+  }, {
     key: "handleValidations",
     value: function handleValidations() {
       var self = this; // validate on save buttons
@@ -131,7 +140,11 @@ function () {
 
       $('.viewAvatar').on('change', function () {
         self.uploadAvatarChange(this);
-      });      
+      }); 
+
+      $('.clearPass').on('change', function () {
+        self.clearInput(this, 'ClearPass');
+      });
     }
   }]);
 

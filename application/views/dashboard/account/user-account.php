@@ -55,7 +55,7 @@
                           <!-- .form-actions -->
                           <div class="form-actions">
                             <!-- enable submit btn when user type their current password -->
-                            <input type="password" name="senha_old" class="form-control mr-3" minlength="6" placeholder="Entra senha atual"> <button type="button" class="btn btn-primary text-nowrap ml-auto sendToSave">Alterar Conta</button>
+                            <input type="password" name="senha_old" class="form-control mr-3" minlength="6" placeholder="Entra senha atual"> <button type="button" class="btn btn-primary text-nowrap ml-auto sendToSave clearPass">Alterar Conta</button>
                           </div><!-- /.form-actions -->
                         <?= form_close() ?><!-- /form -->
                       </div><!-- /.card-body -->

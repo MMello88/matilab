@@ -143,23 +143,23 @@ class Accounts extends MY_Controller {
 							echo json_encode(["code" => "2", "message" => "A senha não pode ser iguais!"]);
 							return;
 						}
+						
+						if(strlen($this->input->post('senha_old')) <= 5){
+							echo json_encode(["code" => "2", "message" => "O tamanho da senha Nova menor que 6."]);
+							return;
+						}
+
+						if(strlen($this->input->post('senha_new')) <= 5){
+							echo json_encode(["code" => "2", "message" => "O tamanho da senha Atual menor que 6."]);
+							return;
+						}
 					} else {
 						if (empty($this->input->post('senha_old')) && !empty($this->input->post('senha_new'))){
-							if(length($this->input->post('senha_old')) >= 6){
-								echo json_encode(["code" => "2", "message" => "O tamanho da senha Nova "]);
-								return;
-							}
-
 							echo json_encode(["code" => "2", "message" => "Informe a senha Atual!"]);
 							return;
 						}
 
 						if (empty($this->input->post('senha_new')) && !empty($this->input->post('senha_old'))){
-							if(length($this->input->post('senha_new')) >= 6){
-								echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
-								return;
-							}
-
 							echo json_encode(["code" => "2", "message" => "Informe a senha Nova!"]);
 							return;
 						}
@@ -169,7 +169,7 @@ class Accounts extends MY_Controller {
 
 			if($this->accounts->updateContinuacao()){
 				$this->session->set_userdata("session_account",["email" => $this->account->email, "cookie" => False]);
-				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!".json_encode($_POST)]);
+				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!".json_encode($dat)]);
 			} else {
 				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 			}
