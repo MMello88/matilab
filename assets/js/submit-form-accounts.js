@@ -109,7 +109,7 @@ function () {
       var $trigger = $(trigger); //Botão diparado
       var $form = $trigger.parents('form');
       if (tipo == "clearPass"){
-        $('input[type="password"]').val('');
+        $("input[type='password']").val('');
       }
     }
   }, {
