@@ -67,7 +67,7 @@ class Accounts_model extends CI_Model {
         ];
 
         if($this->input->post('nome') !== null){
-            $data['nome'] = md5($this->input->post('nome'));
+            $data['nome'] = $this->input->post('nome');
         }
 
         if($this->input->post('senha_new') !== null){
