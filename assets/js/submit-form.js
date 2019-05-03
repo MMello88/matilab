@@ -67,26 +67,7 @@ function () {
         type: 'canvas',
         size: 'viewport'
       }).then(function(response){
-        $.ajax({
-          type: "POST",
-          url: base_url + "Accounts/settings_upload_avatar",
-          data:{"image": response},
-          success:function(data)
-          {
-            var jdata = JSON.parse(data);
-            if(jdata.code == '1'){
-              $("#imgAvatarNavBar").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
-              $("#imgAvatarHeader").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
-              $("#imgAvatar").attr("src", base_url_assets + "assets/images/avatars/" + jdata.img);
-              toastmsg.delayToasts("info",jdata.message);
-            } else {
-              toastmsg.delayToasts("info",jdata.message);
-            }
-          },
-          error: function(data){
-            toastmsg.delayToasts("danger", data);
-          }
-        });
+        $(".cr-image").attr("src", response);
       })
     }
   }, {
@@ -100,16 +81,31 @@ function () {
           console.log('jQuery bind complete');
         });
       }
+
       reader.readAsDataURL(trigger.files[0]);
-      //$('#avatarModal').modal('show');
+      $(".cr-image").attr("src", reader);
+      /*
+      console.log(trigger.files[0]);
+      $(".cr-image").attr("src", trigger.files[0]);
+      reader.readAsDataURL(trigger.files[0]);
+      
+      $image_crop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+      }).then(function(response){
+
+        //$(".cr-image").attr("src", response);
+      })
+      */
     }
   }, {
     key: "handleValidations",
     value: function handleValidations() {
       var self = this; // validate on save buttons
 
-      $image_crop = $('#image_demo').croppie({
+      $image_crop = $('#cr_imageTeam').croppie({
         enableExif: true,
+        url: base_url_assets + "assets/images/avatars/unknown-profile.jpg",
         viewport: {
           width:200,
           height:200,
@@ -125,11 +121,11 @@ function () {
         self.validateBy(this);
       });
 
-      $('.sendToSaveAvatar').on('click', function () {
+      $('.sendToSaveAvatarTeam').on('click', function () {
         self.uploadAvatarClick(this);
       });
 
-      $('.viewAvatar').on('change', function () {
+      $('.changeAvatarTeam').on('change', function () {
         self.uploadAvatarChange(this);
       });      
     }

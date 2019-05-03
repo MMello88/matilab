@@ -108,7 +108,7 @@ function () {
     value: function clearInput(trigger, tipo) {
       var $trigger = $(trigger); //Botão diparado
       var $form = $trigger.parents('form');
-      if (tipo == "clearPass"){
+      if (tipo == "ClearPass"){
         $("input[type='password']").val('');
       }
     }
@@ -142,7 +142,7 @@ function () {
         self.uploadAvatarChange(this);
       }); 
 
-      $('.clearPass').on('change', function () {
+      $('.clearPass').on('click', function () {
         self.clearInput(this, 'ClearPass');
       });
     }

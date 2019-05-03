@@ -514,8 +514,10 @@
                 </div><!-- /.form-group -->
                 <hr>
                 <!-- .form-group -->
-                <div class="form-group">
-                  <div id="image_demo" style="width:350px; margin-top:30px"></div>
+                <div id="imageTeam" class="form-group">
+                  <button type="button" class="btn btn-success sendToSaveAvatarTeam">Carregar Imagem</button>
+                  <input id="" class="changeAvatarTeam" type="file" name="avatarTeam">
+                  <div id="cr_imageTeam" style="width:350px; margin-top:30px"></div>
                 </div><!-- /.form-group -->
               </div><!-- /.modal-body -->
               <hr>

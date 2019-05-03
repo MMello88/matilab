@@ -169,7 +169,7 @@ class Accounts extends MY_Controller {
 
 			if($this->accounts->updateContinuacao()){
 				$this->session->set_userdata("session_account",["email" => $this->account->email, "cookie" => False]);
-				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!".json_encode($dat)]);
+				echo json_encode(["code" => "1", "message" => "Perfil cadastrado com sucesso!"]);
 			} else {
 				echo json_encode(["code" => "2", "message" => "Tente novamente em alguns instantes. Obrigado!"]);
 			}
